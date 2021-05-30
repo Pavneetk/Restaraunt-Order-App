@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- Montserrat Font style-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome ICONS-->
+    <script src="https://kit.fontawesome.com/39d9cd885c.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <nav>
+    <div class='logo'>
+      <img src="/images/logo.png">
+    </div>
+    <div class = 'search'>
+      <input type="text" placeholder="Search for your dish...">
+      <i class="fas fa-search"></i>
+      </div>
+  </nav>
+
+    <header>
+    <div class="jumbotron">
+    </div>
+    <button type="submit">Start Ordering! <i class="fas fa-fish"></i></button>
+  </header>
+  
+  <main class='container'>
+   
+    <div class='accordian'>
+      <h3>This will be the accordian section</h3>
+    </div>
+    <div class='menu'>
+      <h3>This will be the menu section</h3>
+      <section class="menu_item">
+      
+          <div class="menu_item_img">
+
+              <img src="./images/catch_of_the_day_nally.webp">
+              
+          </div>
+          <p>
+            1 lb of steamed king crab legs served with rice, seasonal vegetables and hot butters
+          </p>
+          <div class="menu_item_add">
+            <span>Add to order</span>
+          
+          </div>
+        
+      </section>
+    </div>
+    <div class='checkout'>
+      <h3>This will be the checkout section</h3>
+    </div>
+   
+  </main>
+  </body>
+</html>
+
+<!--
+-browse menu.js, users.js GET
+-read order.js GET
+-edit users.js PUT, menu.js PUT
+-add order.js menu.js POST
+-delete order.js menu.js DELETE -->
