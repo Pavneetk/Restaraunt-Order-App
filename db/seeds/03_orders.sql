@@ -1,4 +1,4 @@
-INSERT INTO orders (user_id) VALUES
-(2),
-(3),
-(3);
+INSERT INTO orders (user_id, status) VALUES
+(2, 'closed'),
+(3, 'closed'),
+(3, 'open');

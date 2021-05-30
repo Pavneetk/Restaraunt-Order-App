@@ -30,11 +30,6 @@ module.exports = (db) => {
     // CHANGE THE USER ID TO COOKIES (REQ.SESSION?)
     let query = ` INSERT INTO orders (user_id) VALUES (1); `
 
-    for (let key of Object.keys(req.body)) {
-      console.log("key", key)
-      query += `INSERT INTO menu_items_orders (menu_item_id, order_id, quantity) VALUES ((SELECT menu_items.id FROM menu_items JOIN menu_items_orders ON menu_items.id = menu_item_id GROUP BY menu_items.id HAVING menu_items.name = 'pop'), (SELECT id FROM orders ORDER BY id DESC LIMIT 1), ${req.body[key]});`
-    }
-
     console.log(query);
     db.query(query)
       .then(data => {
@@ -49,9 +44,12 @@ module.exports = (db) => {
   });
 
     router.delete("/", (req, res) => {
-    let query = `DELETE FROM orders WHERE orders.id = ${req.body.ordersId};`;
 
-      db.query(query)
+      //let query = `DELETE FROM orders WHERE orders.id = $1;`;
+      let query = `DELETE FROM orders WHERE orders.id = $1`;
+
+      //db.query(query, [req.body.ordersId])
+      db.query(query, [req.body.ordersId])
       .then(data => {
         const orders = data.rows;
         res.json({ orders });

@@ -51,28 +51,33 @@ module.exports = (db) => {
   router.put("/", (req, res) => {
     console.log(req.body);
     let query = `UPDATE menu_items SET `;
-
+    let options = [];
     if (req.body.name) {
-      query += `name = '${req.body.name}' `;
+      options.push(req.body.name);
+      query += `name = '$${options.length}' `;
     }
     if (req.body.price) {
-      query += `, price = ${req.body.price} `;
+      options.push(req.body.price);
+      query += `, price = $${options.length} `;
     }
 
     if (req.body.thumbnailPictureUrl) {
-      query += `, thumnailPictureURL = '${req.body.thumbnailPictureUrl}', `;
+      options.push(req.body.thumbnailPictureUrl);
+      query += `, thumnailPictureURL = '$${options.length}', `;
     }
     if (req.body.description) {
-      query += `, description = '${req.body.description}' `;
+      options.push(req.body.description);
+      query += `, description = '$${options.length}' `;
     }
     if (req.body.category) {
-      query += `, category = '${req.body.category}' `;
+      options.push(req.body.category);
+      query += `, category = '$${options.length}' `;
     }
-
-    query += `WHERE menu_items.id = ${req.body.menuItemId};`;
+    options.push(req.body.menuItemId);
+    query += `WHERE menu_items.id = $${options.length};`;
     console.log(query);
 
-    db.query(query)
+    db.query(query, options)
       .then(data => {
         const menu_items = data.rows;
         res.json({ menu_items });
@@ -86,9 +91,8 @@ module.exports = (db) => {
   });
 
   router.delete("/", (req, res) => {
-    let query = `DELETE FROM menu_items WHERE menu_items.id = ${req.body.menuItemId};`;
-    console.log(req.body);
-    db.query(query)
+    let query = `DELETE FROM menu_items WHERE menu_items.id = $1;`;
+    db.query(query, [req.body.menuItemId])
       .then(data => {
         const menu_items = data.rows;
         res.json({ menu_items });

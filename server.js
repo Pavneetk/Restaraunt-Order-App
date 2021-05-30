@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const cookieSession = require('cookie-session');
+const cookieParser = require('cookie-parser');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -17,7 +19,7 @@ const db = new Pool(dbParams);
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
+//  'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
@@ -30,6 +32,13 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key"],
+  })
+);
+app.use(cookieParser());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -53,6 +62,20 @@ app.use("/api/order", orderRoutes(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+//Login a user with cookies
+app.get('/login/:id/', (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect('/');
+});
+
+app.get('/logout/', (req, res) => {
+  if (!req.session) {
+    res.redirect('/');
+  }
+  req.session = null;
+  res.redirect('/');
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

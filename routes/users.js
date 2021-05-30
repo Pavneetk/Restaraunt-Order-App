@@ -42,7 +42,7 @@ module.exports = (db) => {
       options.push(req.body.address);
       query += `, address = $${options.length} `;
     }
-    options.push(req.body.usersId);
+    options.push(req.session.user_id);
     query += `WHERE users.id = $${options.length};`;
     console.log(options);
 
