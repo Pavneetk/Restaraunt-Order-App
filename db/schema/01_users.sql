@@ -8,7 +8,7 @@ CREATE TABLE users (
   name VARCHAR(255) NOT NULL,
   phone_number VARCHAR(15) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  address VARCHAR(255),
+  address VARCHAR(255) NOT NULL,
   is_owner BOOLEAN NOT NULL DEFAULT FALSE
 );
 

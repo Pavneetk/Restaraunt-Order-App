@@ -47,14 +47,31 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-/*
+
   router.put("/", (req, res) => {
-
-
-    let query = `DELETE FROM menu_items WHERE menu_items.id = ${req.body.menuItemId};`;
-
-
     console.log(req.body);
+    let query = `UPDATE menu_items SET `;
+
+    if (req.body.name) {
+      query += `name = '${req.body.name}' `;
+    }
+    if (req.body.price) {
+      query += `, price = ${req.body.price} `;
+    }
+
+    if (req.body.thumbnailPictureUrl) {
+      query += `, thumnailPictureURL = '${req.body.thumbnailPictureUrl}', `;
+    }
+    if (req.body.description) {
+      query += `, description = '${req.body.description}' `;
+    }
+    if (req.body.category) {
+      query += `, category = '${req.body.category}' `;
+    }
+
+    query += `WHERE menu_items.id = ${req.body.menuItemId};`;
+    console.log(query);
+
     db.query(query)
       .then(data => {
         const menu_items = data.rows;
@@ -67,7 +84,7 @@ module.exports = (db) => {
       });
 
   });
-*/
+
   router.delete("/", (req, res) => {
     let query = `DELETE FROM menu_items WHERE menu_items.id = ${req.body.menuItemId};`;
     console.log(req.body);

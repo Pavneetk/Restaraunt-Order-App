@@ -1,0 +1,8 @@
+------------Minimum Viable Product------------
+1. The ability to add things to a cart.
+2. Can order multiple items
+3. The ability to go to checkout.
+4. The ability to send finalized order to restaurant.
+5. Order recieved by resaurant by text and in app
+6. Respond by text and in app notification with ETA. (stretch)
+7.
