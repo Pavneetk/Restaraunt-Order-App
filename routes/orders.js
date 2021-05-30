@@ -28,10 +28,10 @@ module.exports = (db) => {
       //           }
 
     // CHANGE THE USER ID TO COOKIES (REQ.SESSION?)
-    let query = ` INSERT INTO orders (user_id) VALUES (1); `
+    let query = ` INSERT INTO orders (user_id) VALUES ($1); `
 
     console.log(query);
-    db.query(query)
+    db.query(query, [req.session.user_id])
       .then(data => {
         const addToOrder = data.rows;
         res.json({ addToOrder });

@@ -196,7 +196,7 @@ main {
   background-color: $backgroundColor;
 
   .checkout {
-    width: 33%;
+    width: 20%;
     padding: 0 1rem 0 1rem;
     border: 0.5px $brownBeige;
     background-color: $lightBackgroundColor;
@@ -205,7 +205,7 @@ main {
   }
 
   .accordian {
-    width: 33%;
+    width: 20%;
     background-color: $lightBackgroundColor;
     border-radius: 10px;
     margin: 1rem;
@@ -236,10 +236,26 @@ section.menu_item {
   justify-content: space-between;
   align-items: center;
   font-family: $mainFont;
-  color: #000000;
+  color: $darkBlue;
   border: 3px solid $backgroundColor;
   border-radius: 10px;
   background-color: $lightBackgroundColor;
+
+  .menu-item-name {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .menu-item-description {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .menu-item-price {
+    display: flex;
+    justify-content: flex-end;
+  }
+
 }
 
 section.menu_item:hover {
@@ -247,10 +263,10 @@ section.menu_item:hover {
 }
 
 div.menu_item_img img{
-  margin: 1px;
-  padding: 5px;
-  width: 145px;
-  height: 145px;
+    margin: 1px;
+    padding: 5px;
+    width: 145px;
+    height: 145px;
 }
 
 div.login {

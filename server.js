@@ -44,21 +44,15 @@ app.use(cookieParser());
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const menuRoutes = require("./routes/menu");
-<<<<<<< HEAD
-=======
 const ordersRoutes = require("./routes/orders");
 const orderRoutes = require("./routes/order");
->>>>>>> 0dc01b60b292a832ada96e227ea2b5478bcb0cca
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/menu", menuRoutes(db));
-<<<<<<< HEAD
-=======
 app.use("/api/orders", ordersRoutes(db));
 app.use("/api/order", orderRoutes(db));
->>>>>>> 0dc01b60b292a832ada96e227ea2b5478bcb0cca
 // Note: mount other resources here, using the same pattern above
 
 
