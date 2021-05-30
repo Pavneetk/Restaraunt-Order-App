@@ -14,7 +14,7 @@ The following steps are only for _one_ of the group members to perform.
 
 ## Getting Started
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
+1. Create the `.env` by using `.env.example` as a reference: ` `
 2. Update the .env file with your correct local information 
   - username: `labber` 
   - password: `labber` 
