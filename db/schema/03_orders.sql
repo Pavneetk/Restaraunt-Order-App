@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS orders CASCADE;
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER references users(id) NOT NULL,
+  user_id INTEGER references users(id) ON DELETE CASCADE,
   date TIMESTAMP WITH TIME ZONE NOT NULL
                 DEFAULT CURRENT_TIMESTAMP
 );
