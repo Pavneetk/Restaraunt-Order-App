@@ -15,7 +15,7 @@ $(document).ready(function () {
 //   });
 // });
 
-$("#appetizers").click(function () {
+$("#app").click(function () {
   $('#2')[0].scrollIntoView();
 });
 
@@ -46,8 +46,14 @@ function createMenuElement(menuData) {
 
   //loop through each obj element in the array and add the returned HTML structure to the main container
   function renderMenu(menuData) {
+    for (let i = 0; i < menuData.length; i++) {
+      const element = menuData[i];
+
+    }
+
     menuData.forEach(element => {
       const $item = createMenuElement(element);
+      if(element.category === lastCat)
       $('div.menu').append($item);
     });
   }
@@ -89,8 +95,8 @@ function createMenuElement(menuData) {
     <h5 class="price">${'asdf'}</h5>
     </div>`
   }
-
-    $(window).on('submit','form.menu-item-form', function(event) {
+    // let forms = document.getElementsBy('.menu-item-form');
+    $(document).on('submit','form.menu-item-form', function(event) {
       console.log('STARTED AJAX',event);
     event.preventDefault();
     let data = $(this).Val();
