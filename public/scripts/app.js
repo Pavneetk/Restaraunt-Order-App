@@ -15,10 +15,6 @@ $(document).ready(function () {
 //   });
 // });
 
-<<<<<<< HEAD
-$("#appetizers").click(function () {
-  $('#2')[0].scrollIntoView();
-=======
 $("#app").click(function () {
   $('.Appetizers')[0].scrollIntoView({block: 'center'});
 });
@@ -42,7 +38,6 @@ $("#beer").click(function () {
 });
 $("#cocktails").click(function () {
   $('.Cocktails')[0].scrollIntoView({block: 'center'});
->>>>>>> df3df11abdea6422cf0d1d0270ce206f1898e787
 });
 
 
@@ -63,11 +58,7 @@ function createMenuElement(menuData) {
       <form id="${menuData.id}" class="menu-item-form">
       <h3 class="menu-item-price">${menuData.price}</h3>
         <input name="${menuData.id}" placeholder="quantity" type="text"></input>
-<<<<<<< HEAD
-        <input class="menu-item-form" type="submit" value="Add To Order">
-=======
         <button class="menu-item-button" form=${menuData.id} type="submit">Add To Order</button>
->>>>>>> df3df11abdea6422cf0d1d0270ce206f1898e787
       </form>
       </div>
    </section>
@@ -133,33 +124,6 @@ function createMenuElement(menuData) {
     <h5 class="price">${'asdf'}</h5>
     </div>`
   }
-<<<<<<< HEAD
-
-    $("button.checkoutButton").submit(function(event) {
-      console.log('STARTED AJAX',event);
-    event.preventDefault();
-    let data = $(this).Val();
-    $.post(
-      "/api/order",
-      data,
-      function() => {
-        console.log(data);
-      }
-  )
-
-  // const addToOrder = () => {
-
-    // }
-
-    //  //ajax request onClick for login button at top of page
-  //  const login = () => {
-    //    $.ajax({
-  //      url: `/login/`,
-  //      method: "GET"
-  //    })
-  //  }
-})
-=======
     // let forms = document.getElementsBy('.menu-item-form');
 
 
@@ -205,7 +169,6 @@ function createMenuElement(menuData) {
    )
    })
 
->>>>>>> df3df11abdea6422cf0d1d0270ce206f1898e787
 
 
 })
