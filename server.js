@@ -63,8 +63,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+let user_id;
 //Login a user with cookies
 app.get('/login/:id/', (req, res) => {
+  user_id = req.session.user_id;
   req.session.user_id = req.params.id;
   res.redirect('/');
 });
@@ -80,3 +82,7 @@ app.get('/logout/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+module.exports = {
+  user_id: 5
+}

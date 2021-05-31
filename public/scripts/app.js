@@ -1,31 +1,44 @@
-$(document).ready(function () {
+// const { user_id } = require('../../server.js');
+// const cookieParser = require('cookie-parser');
 
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });
+$(document).ready(function () {
+  // console.log(user_id);
+// console.log(req.session.user_id);
+// $(() => {
+//   $.ajax({
+//     method: "GET",
+//     url: "/api/users"
+//   }).done((users) => {
+//     for(user of users) {
+//       $("<div>").text(user.name).appendTo($("body"));
+//     }
+//   });
+// });
+
+$("#appetizers").click(function () {
+  $('#2')[0].scrollIntoView();
 });
 
 
-//returns full HTML structure a single tweet box
+//returns full HTML structure a single menu item box
 function createMenuElement(menuData) {
   return $(`
     <section id="${menuData.id}" class="menu_item ${menuData.category}">
       <div class="menu_item_img">
         <img src="${menuData.thumbnail_picture_url}">
       </div>
-      <h3 class="menu_item_name">${menuData.name}</h3>
-      <p class="menu_item_description">
-      ${menuData.description}
-      </p>
-      <div class="menu_item_add">
-      <h3 class="menu_item_price">$${menuData.price}</h3>
-      <span>Add to order</span>
+      <div class="nameDescription">
+        <h3 class="menu-item-name">${menuData.name}</h3>
+        <p class="menu_item_description">
+        ${menuData.description}
+        </p>
+      </div>
+      <div class="menu-item-add">
+      <form id="${menuData.id}" class="menu-item-form">
+      <h3 class="menu-item-price">${menuData.price}</h3>
+        <input name="${menuData.id}" placeholder="quantity" type="text"></input>
+        <button class="menu-item-button" form=${menuData.id} type="submit">Add To Order</button>
+      </form>
       </div>
    </section>
     `)
@@ -52,15 +65,55 @@ function createMenuElement(menuData) {
   //initiates menu_items data loading on page load
   loadData();
   let isStarted = false;
-  function startOrder() {
+  console.log(isStarted);
+
+  const startOrder = () => {
+    if (isStarted === false) {
+      $.ajax({
+        url: "/api/orders",
+        method: "POST",
+      }).then((result) => {
+        console.log(result);
+      })
+
+    }
+    isStarted = true;
+  }
+  startOrder();
+  // Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]
+
+  const addToOrderElement = (orderInfo) => {
+    `<div class="menuItemsOrder">
+    <h5 class="quantity">${orderInfo[Object.keys(orderInfo)[0]]}</h5>
+    <h5 class="nameOfFoodItem">${Object.keys(orderInfo)}</h5>
+    <h5 class="price">${'asdf'}</h5>
+    </div>`
+  }
+
+    $(window).on('submit','form.menu-item-form', function(event) {
+      console.log('STARTED AJAX',event);
+    event.preventDefault();
+    let data = $(this).Val();
     $.ajax({
-      url: "/api/orders",
+      url: "/api/order",
       method: "POST",
     }).then((result) => {
-      console.log(result);
+      console.log("YEAY:", result);
+    }).catch((err) => {
+      err
     })
-  }
-    $('document').scroll(startOrder());
+  })
 
+  // const addToOrder = () => {
 
-});
+    // }
+
+    //  //ajax request onClick for login button at top of page
+  //  const login = () => {
+    //    $.ajax({
+  //      url: `/login/`,
+  //      method: "GET"
+  //    })
+  //  }
+})
+
