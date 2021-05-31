@@ -3,11 +3,6 @@ INSERT INTO menu_items (name, price, thumbnail_picture_url, description, categor
 
 --Appetizers
 
-('Burger', 8, '/images/bowl_of_fancy_sauce.webp', 'a taster gosh darn burggg', 'Mains'),
-('Fries', 4, '/images/bowl_of_shrimp.webp', 'Salty salty fries', 'Appetizers'),
-
-('Pop', 2, '/images/shrimp_cocktail.webp', 'Sugar soda, takes the rust off nails.', 'Drinks'),
-
 ('Spinach Artichoke', 14, 'xxx', 'creamy spinach, artichoke hearts combined with a mixture of cheeses topped with pico de gallo accompanied with tortilla chips for dipping', 'Appetizers'),
 
 ('Mediterranean Flatbread', 15, 'xxx', 'vine ripened tomatoes, caramelized onions, olives & artichokes, with hummus and topped with crumbled feta, drizzled with a sweet balsamic glaze', 'Appetizers'),
@@ -69,71 +64,71 @@ INSERT INTO menu_items (name, price, thumbnail_picture_url, description, categor
 
 --White
 
-('50 Peaks White', 30, 'xxx', 'British Columbia', 'Drinks'),
+('50 Peaks White', 30, 'xxx', 'British Columbia', 'Whites'),
 
-('Monkey Bay', 34, 'xxx', 'New Zealand', 'Drinks'),
+('Monkey Bay', 34, 'xxx', 'New Zealand', 'Whites'),
 
-('Sandhill, Pinot Gris', 36, 'xxx', 'British Columbia', 'Drinks'),
+('Sandhill, Pinot Gris', 36, 'xxx', 'British Columbia', 'Whites'),
 
-('Kung Fu Girl, Riesling', 48, 'xxx', 'United States', 'Drinks'),
+('Kung Fu Girl, Riesling', 48, 'xxx', 'United States', 'Whites'),
 
 
 --Red
 
-('50 Peaks Red', 30, 'xxx', 'British Columbia', 'Drinks'),
+('50 Peaks Red', 30, 'xxx', 'British Columbia', 'Reds'),
 
-('Red Rooster, Merlot', 34, 'xxx', 'British Columbia', 'Drinks'),
+('Red Rooster, Merlot', 34, 'xxx', 'British Columbia', 'Reds'),
 
-('Rosemount, Shiraz', 38, 'xxx', 'Australia', 'Drinks'),
+('Rosemount, Shiraz', 38, 'xxx', 'Australia', 'Reds'),
 
-('Circus, Malbec', 36, 'xxx', 'Argentina', 'Drinks'),
+('Circus, Malbec', 36, 'xxx', 'Argentina', 'Reds'),
 
-('Geringer Brothers, Pinot Noir', 40, 'xxx', 'British Columbia', 'Drinks'),
+('Geringer Brothers, Pinot Noir', 40, 'xxx', 'British Columbia', 'Reds'),
 
 
 --Beer
 
-('Catch Lager', 6, 'xxx', 'yyy', 'Drinks'),
+('Catch Lager', 6, 'xxx', 'yyy', 'Beers'),
 
-('Red Truck Ale', 7, 'xxx', 'yyy', 'Drinks'),
+('Red Truck Ale', 7, 'xxx', 'yyy', 'Beers'),
 
-('Warlock Destiny IPA', 6, 'xxx', 'yyy', 'Drinks'),
+('Warlock Destiny IPA', 6, 'xxx', 'yyy', 'Beers'),
 
-('Trash Panda IPA', 8, 'xxx', 'yyy', 'Drinks'),
+('Trash Panda IPA', 8, 'xxx', 'yyy', 'Beers'),
 
-('Electric Unicorn IPA', 8, 'xxx', 'yyy', 'Drinks'),
+('Electric Unicorn IPA', 8, 'xxx', 'yyy', 'Beers'),
 
-('Coors', 5, 'xxx', 'yyy', 'Drinks'),
+('Coors', 5, 'xxx', 'yyy', 'Beers'),
 
-('Coors Banquet', 5, 'xxx', 'yyy', 'Drinks'),
+('Coors Banquet', 5, 'xxx', 'yyy', 'Beers'),
 
-('Kronenbourg', 6, 'xxx', 'yyy', 'Drinks'),
+('Kronenbourg', 6, 'xxx', 'yyy', 'Beers'),
 
-('Corona', 5, 'xxx', 'yyy', 'Drinks'),
+('Corona', 5, 'xxx', 'yyy', 'Beers'),
 
-('Stella Artois', 7, 'xxx', 'yyy', 'Drinks'),
+('Stella Artois', 7, 'xxx', 'yyy', 'Beers'),
 
-('Fat Tug IPA', 8, 'xxx', 'yyy', 'Drinks'),
+('Fat Tug IPA', 8, 'xxx', 'yyy', 'Beers'),
 
 
 --Cocktails
 
-('Catch Caesar', 8, 'xxx', 'vodka, tobasco, worcestershire, horseradish clamato & pepperoni stick', 'Drinks'),
+('Catch Caesar', 8, 'xxx', 'vodka, tobasco, worcestershire, horseradish clamato & pepperoni stick', 'Cocktails'),
 
-('French 75', 8, 'xxx', 'Gin, segura viudas, lemon juice', 'Drinks'),
+('French 75', 8, 'xxx', 'Gin, segura viudas, lemon juice', 'Cocktails'),
 
-('Moscow Mule', 8, 'xxx', 'Fentimins ginger beer, vodka, lime juice', 'Drinks'),
+('Moscow Mule', 8, 'xxx', 'Fentimins ginger beer, vodka, lime juice', 'Cocktails'),
 
-('Pick Me Up', 8, 'xxx', 'Baileys, kahlua, crème de cacao, milk, coffee', 'Drinks'),
+('Pick Me Up', 8, 'xxx', 'Baileys, kahlua, crème de cacao, milk, coffee', 'Cocktails'),
 
-('Dark n Stormy', 8, 'xxx', 'Fentimins ginger beer, kraken spiced rum, lime', 'Drinks'),
+('Dark n Stormy', 8, 'xxx', 'Fentimins ginger beer, kraken spiced rum, lime', 'Cocktails'),
 
-('Old Fashioned', 8, 'xxx', 'Bourbon, angosturas bitters, sugar, orange zest', 'Drinks'),
+('Old Fashioned', 8, 'xxx', 'Bourbon, angosturas bitters, sugar, orange zest', 'Cocktails'),
 
-('Negroni', 10, 'xxx', 'Bombay sapphire gin, campari, sweet vermouth, orange zest', 'Drinks'),
+('Negroni', 10, 'xxx', 'Bombay sapphire gin, campari, sweet vermouth, orange zest', 'Cocktails'),
 
-('Catch Sours', 8, 'xxx', 'Choose your liquor: amaretto or bourbon or pisco with fresh lemon, lime juice & egg whites', 'Drinks'),
+('Catch Sours', 8, 'xxx', 'Choose your liquor: amaretto or bourbon or pisco with fresh lemon, lime juice & egg whites', 'Cocktails'),
 
-('ElderFlower Gimli', 10, 'xxx', 'gin, mint, elderflower, lime juice, egg whites', 'Drinks'),
+('ElderFlower Gimli', 10, 'xxx', 'gin, mint, elderflower, lime juice, egg whites', 'Cocktails'),
 
-('Larry Tates Dirty Martini!!!', 48, 'xxx', 'Gin(3oz), Dry Vermouth, Olive Brine. Take a trip on the wild side and dive into one of Larry Tates famous Dirty Martinis!', 'Drinks' );
+('Larry Tates Dirty Martini!!!', 48, 'xxx', 'Gin(3oz), Dry Vermouth, Olive Brine. Take a trip on the wild side and dive into one of Larry Tates famous Dirty Martinis!', 'Cocktails' );

@@ -16,7 +16,28 @@ $(document).ready(function () {
 // });
 
 $("#app").click(function () {
-  $('#2')[0].scrollIntoView();
+  $('.Appetizers')[0].scrollIntoView({block: 'center'});
+});
+$("#main").click(function () {
+  $('.Mains')[0].scrollIntoView({block: 'center'});
+});
+$("#desserts").click(function () {
+  $('.Desserts')[0].scrollIntoView({block: 'center'});
+});
+$("#drinks").click(function () {
+  $('.Drinks')[0].scrollIntoView({block: 'center'});
+});
+$("#white").click(function () {
+  $('.Whites')[0].scrollIntoView({block: 'center'});
+});
+$("#red").click(function () {
+  $('.Reds')[0].scrollIntoView({block: 'center'});
+});
+$("#beer").click(function () {
+  $('.Beers')[0].scrollIntoView({block: 'center'});
+});
+$("#cocktails").click(function () {
+  $('.Cocktails')[0].scrollIntoView({block: 'center'});
 });
 
 
@@ -46,16 +67,24 @@ function createMenuElement(menuData) {
 
   //loop through each obj element in the array and add the returned HTML structure to the main container
   function renderMenu(menuData) {
+
     for (let i = 0; i < menuData.length; i++) {
       const element = menuData[i];
 
+      const $item = createMenuElement(element);
+      if ((i>0) && (menuData[i].category !== menuData[i-1].category)){
+        if (menuData[i].category === 'Whites') {
+          $('div.menu').append(`<h1 class="Drinks">Drinks</h1>`);
+        }
+        $('div.menu').append(`<h1 class="${menuData[i].category}">${menuData[i].category}</h1>`);
+      }
+      if (i === 0) {
+        $('div.menu').append(`<h1 class="${menuData[i].category}">${menuData[i].category}</h1>`);
+      }
+
+      $('div.menu').append($item);
     }
 
-    menuData.forEach(element => {
-      const $item = createMenuElement(element);
-      if(element.category === lastCat)
-      $('div.menu').append($item);
-    });
   }
 
   //ajax get request to server returns menu_items data and call rendermenu functiong with it
@@ -96,6 +125,8 @@ function createMenuElement(menuData) {
     </div>`
   }
     // let forms = document.getElementsBy('.menu-item-form');
+
+
     $(document).on('submit','form.menu-item-form', function(event) {
       console.log('STARTED AJAX',event);
     event.preventDefault();
@@ -114,12 +145,30 @@ function createMenuElement(menuData) {
 
     // }
 
-    //  //ajax request onClick for login button at top of page
-  //  const login = () => {
-    //    $.ajax({
-  //      url: `/login/`,
-  //      method: "GET"
-  //    })
-  //  }
-})
+     //ajax request onClick for login button at top of page
 
+    $('.login').on('click', (req) => {
+      console.log(req);
+      // let user_id = req.session.user_id;
+      $.ajax({
+       url: `/login/3`,
+       method: "GET"
+     }).then(() => {
+       $('.loginLogout').html('<button class="logout">Logout</button>')
+      }).catch((err) => {
+        console.log(err);
+      })
+    })
+
+   $('.logout').on('click', () => {
+    $.ajax({
+    url: `/logout`,
+    method: "GET"
+    }).then(
+    $('.loginLogout').html('<button class="login">Login</button>')
+   )
+   })
+
+
+
+})

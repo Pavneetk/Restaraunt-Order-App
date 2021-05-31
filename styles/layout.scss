@@ -288,7 +288,7 @@ div.login {
   padding: 5px;
   font-family: $mainFont;
 }
-div.login button {
+div.loginLogout button {
   width: 100px;
   margin-left: 100px;
   margin-right:10px;
@@ -299,3 +299,6 @@ div.login button {
   border: none;
 }
 
+.Whites, .Reds, .Beers, .Cocktails {
+  font-size: 1.5rem;
+}

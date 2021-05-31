@@ -12,7 +12,7 @@ $(document).ready(() => {
               });
           } else if($window.scrollTop() < offset.top) {
             $sidebar.stop().animate({
-              marginTop: 17
+              marginTop: 82
             });
           } else {
               $sidebar.stop().animate({
