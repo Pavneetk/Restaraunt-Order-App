@@ -18,50 +18,60 @@
     <script src="https://kit.fontawesome.com/39d9cd885c.js" crossorigin="anonymous"></script>
   </head>
   <body>
-  <nav>
+  <nav class="nav-bar">
     <div class='logo'>
       <img src="/images/logo.png">
     </div>
     <div class = 'search'>
       <input type="text" placeholder="Search for your dish...">
-      <i class="fas fa-search"></i>
+      <i type='submit' class="fas fa-search"></i>
+    </div>
+      <div class='login'>
+        <button class="login" >Login</button>
       </div>
   </nav>
 
     <header>
     <div class="jumbotron">
-    </div>
-    <button type="submit">Start Ordering! <i class="fas fa-fish"></i></button>
-  </header>
-  
-  <main class='container'>
-   
-    <div class='accordian'>
-      <h3>This will be the accordian section</h3>
-    </div>
-    <div class='menu'>
-      <h3>This will be the menu section</h3>
-      <section class="menu_item">
-      
-          <div class="menu_item_img">
 
-              <img src="./images/catch_of_the_day_nally.webp">
-              
-          </div>
-          <p>
-            1 lb of steamed king crab legs served with rice, seasonal vegetables and hot butters
-          </p>
-          <div class="menu_item_add">
-            <span>Add to order</span>
-          
-          </div>
-        
-      </section>
+
+    <div class="container-scroll">
+      <h3 type="submit">&nbsp&nbspEat &nbsp<i class="fas fa-fish"></i>&nbsp Food!</h3>
+
+
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
     </div>
+  </div>
+  </header>
+
+  <main class='container'>
+
+    <div class='accordian'>
+      <h2>Appetizers</h2>
+      <h2>Mains</h2>
+      <h2>Desserts</h2>
+      <h2>Drinks</h2>
+      <h3>White Wine</h3>
+      <h3>Red Wine</h3>
+      <h3>Beer</h3>
+      <h3>Cocktails</h3>
+    </div>
+
+
+    <!-- menu element for us to latch onto with jQuery and fill with data from the DB -->
+    <div class='menu'>
+    </div>
+
     <div class='checkout'>
       <h3>This will be the checkout section</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, atque reiciendis illum laboriosam ullam beatae natus qui officia voluptates, ut sint iusto nostrum quis, quaerat ratione? Maxime quo fugit maiores.</p>
+      <h3>Subtotal</h3>
+      <form action="/api/orders" method="POST"></form>
+      <button class="checkout" >Checkout</button>
     </div>
-   
+
   </main>
   </body>
 </html>
