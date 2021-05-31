@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css">
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css">
+    <link rel="stylesheet" href="/styles/accordian.css" type="text/css">
+    <link rel="stylesheet" href="/styles/checkout.css" type="text/css">
+    <link rel="stylesheet" href="/styles/menu_items.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -29,7 +34,7 @@
       <img src="/images/logo.png">
     </div>
     <div class = 'search'>
-      <input type="text" placeholder="Search for your dish...">
+      <input type="text" class='search' placeholder="Search for your dish...">
       <i type='submit' class="fas fa-search"></i>
     </div>
       <div class='loginLogout' type='submit'>
@@ -71,8 +76,7 @@
     </div>
 
     <div class='checkout'>
-      <h3>This will be the checkout section</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, atque reiciendis illum laboriosam ullam beatae natus qui officia voluptates, ut sint iusto nostrum quis, quaerat ratione? Maxime quo fugit maiores.</p>
+      <h3 id="checkoutAppendage">Checkout:</h3>
       <h3>Subtotal</h3>
       <form id="checkout"></form>
       <button form="checkout" type="submit" class="checkoutButton" >Checkout</button>

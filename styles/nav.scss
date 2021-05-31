@@ -1,0 +1,60 @@
+@import '_variables';
+
+nav {
+  background-image: -webkit-gradient(linear, left top, left bottom, from($lightBlue), to(#0061927f));
+  display: flex;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+  color: #FFFFFF;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 2;
+}
+
+.search input[type=text] {
+
+  padding: 6px;
+  border: none;
+  border-radius: 10px;
+  outline:none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+  width:400px;
+}
+::-webkit-input-placeholder{
+  color: #fff;
+}
+.search i[type=submit] {
+  margin-top:5px;
+  margin-left: -50px;
+  background: transparent;
+  color: white;
+  border: 0;
+  -webkit-appearance: none;
+  display: flex;
+  align-self:center;
+}
+
+div.search {
+  display:flex;
+  align-self:center;
+}
+
+div.login {
+  padding: 5px;
+  font-family: $mainFont;
+}
+div.loginLogout button {
+  width: 100px;
+  margin-left: 100px;
+  margin-right:10px;
+  background-color: transparent;
+  color: $lightBackgroundColor;
+  font-size: 17px;
+  border-radius: 5px;
+  border: none;
+}

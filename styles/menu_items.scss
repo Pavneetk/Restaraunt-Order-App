@@ -1,0 +1,62 @@
+@import '_variables';
+
+section.menu_item {
+  margin: 1rem;
+  padding: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $mainFont;
+  color: $darkBlue;
+  border: 3px solid $backgroundColor;
+  border-radius: 10px;
+  background-color: $lightBackgroundColor;
+  padding: 0;
+
+  // .menu-item-img
+  .menu_item_img img{
+    margin: 1px;
+    padding: 5px;
+    width: 145px;
+    height: 145px;
+}
+
+  // .menu-item-name {
+  //   // display: flex;
+  //   // justify-content: flex-start;
+  // }
+
+  // .menu-item-description {
+  //   // display: flex;
+  //   // justify-content: flex-start;
+  // }
+
+  .nameDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2%;
+    padding: 2% 5% 2% 5%;
+    text-align: center;
+  }
+
+  .menu-item-price {
+    // display: flex;
+    align-self: flex-end;
+  }
+  .menu-item-form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3% 0 10%;
+  }
+
+}
+
+section.menu_item:hover {
+  background-color: $lightSkyBlue;
+}
+
+
+.Whites, .Reds, .Beers, .Cocktails {
+  font-size: 1.5rem;
+}

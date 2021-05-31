@@ -24,6 +24,39 @@ module.exports = (db) => {
       });
   });
 
+  router.get("/:id", (req, res) => {
+    let query = `SELECT * FROM menu_items WHERE menu_items.id = $1;`;
+
+    db.query(query, [req.params.id])
+      .then((data) => {
+        const menu = data.rows;
+        res.json({ menu });
+      })
+      .catch((err) => {
+        console.log(err.message);
+        res
+          .status(500)
+          .json({ error: err.message });
+      })
+  });
+
+  router.get("/name/:", (req, res) => {
+    let query = `SELECT * FROM menu_items WHERE menu_items.name LIKE %$1%;`;
+console.log('ajax sent');
+    db.query(query, [req.params.name])
+      .then((data) => {
+        console.log(data);
+        const menu_item = data.rows;
+        res.json({ menu_item });
+      })
+      .catch((err) => {
+        console.log(err.message,'quary');
+        res
+          .status(500)
+          .json({ error: err.message });
+      })
+  });
+
   router.post("/", (req, res) => {
 
     // let obj = {

@@ -40,6 +40,20 @@ $("#cocktails").click(function () {
   $('.Cocktails')[0].scrollIntoView({block: 'center'});
 });
 
+$(".fa-search").click(function (data) {
+  let searchParam = $('input.search').val();//LIKE name of dish
+//us db query to find item and its id
+
+  $.ajax({
+    url: `/api/menu/name/:${searchParam}`,
+    method: 'GET'
+  }).then((result)=> {
+    console.log(result,"ajax");
+  })
+
+  })
+
+
 
 //returns full HTML structure a single menu item box
 function createMenuElement(menuData) {
@@ -117,30 +131,47 @@ function createMenuElement(menuData) {
   startOrder();
   // Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]
 
-  const addToOrderElement = (orderInfo) => {
-    `<div class="menuItemsOrder">
-    <h5 class="quantity">${orderInfo[Object.keys(orderInfo)[0]]}</h5>
-    <h5 class="nameOfFoodItem">${Object.keys(orderInfo)}</h5>
-    <h5 class="price">${'asdf'}</h5>
-    </div>`
+    const addToOrderElement = (quantity, itemDetails) => {
+    return $(`
+    <div class="menuItemsOrder">
+      <h6 class="quantity">${quantity}</h6>
+      <h6 class="nameOfFoodItem">${itemDetails.name}</h6>
+      <h6 class="price">$${itemDetails.price}</h6>
+      <button class="deleteItem">X</button>
+    </div>
+    `)
   }
+
+  const addToOrder = (element) => {
+    console.log('addtoOrder is called!')
+    $('#checkoutAppendage').append(element);
+  };
     // let forms = document.getElementsBy('.menu-item-form');
 
 
   $(document).on('submit', 'form.menu-item-form', function(event) {
-    console.log('STARTED AJAX',event);
+
     event.preventDefault();
     let data = $(this).serialize("");
-    const text = decodeURIComponent(data)
+    const text = decodeURIComponent(data);
     console.log("data", text)
     $.ajax({
       url: "/api/order",
       method: "POST",
       data: text
-    }).then((result) => {
-      console.log("YEAY:", result);
-    }).catch((err) => {
-      err
+    }).then((quantity) => {
+      console.log("YEAY:", quantity.addToOrder[0].menu_item_id);
+      $.ajax({
+        url: `/api/menu/${quantity.addToOrder[0].menu_item_id}`,
+        method: 'GET'
+      }).then((itemDetail) => {
+        let quan = quantity.addToOrder[0].quantity;
+        let itemDetails = itemDetail.menu[0];
+        console.log('itemDetail:', itemDetails,'quantity:', quan)
+        addToOrder(addToOrderElement(quan, itemDetails));
+      }).catch((err) => {
+      console.log(err.message);
+      })
     })
   })
 
@@ -164,26 +195,33 @@ function createMenuElement(menuData) {
 
      //ajax request onClick for login button at top of page
 
-    $('.login').on('click', (req) => {
+     $(document).on('submit', '.login', function(event) {
+
       console.log(req);
       // let user_id = req.session.user_id;
       $.ajax({
        url: `/login/3`,
        method: "GET"
      }).then(() => {
-       $('.loginLogout').html('<button class="logout">Logout</button>')
+       $('.loginLogout').html('<button class="logout">Welcome User! -- Logout</button>')
       }).catch((err) => {
         console.log(err);
       })
+
     })
 
-   $('.logout').on('click', () => {
+
+    $()
+
+
+    $(document).on('submit', '.logout', function(event) {
+
     $.ajax({
     url: `/logout`,
     method: "GET"
-    }).then(
+    }).then(() =>{
     $('.loginLogout').html('<button class="login">Login</button>')
-   )
+    })
    })
 
 

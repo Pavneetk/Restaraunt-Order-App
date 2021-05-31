@@ -1,0 +1,38 @@
+  @import '_variables';
+
+  .checkout {
+    width: 20%;
+    padding: 0 1rem 0 2rem;
+    border: 0.5px $brownBeige;
+    background-color: $lightBackgroundColor;
+    border-radius: 10px;
+    margin: 1rem;
+    min-height: 300px;
+    button {
+      margin-bottom: 10px;
+    }
+  }
+
+  .menuItemsOrder {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: $mainFontColor solid 0.5px;
+    align-items: baseline;
+    h6 {
+      margin: 0 5px 0 5px;
+      .nameOfFoodItem {
+        width: 20%;
+      }
+    }
+    button {
+      border-radius: 100%;
+      border: 2px solid $mainFontColor;
+      color: $mainFontColor;
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+    }
+  }
+

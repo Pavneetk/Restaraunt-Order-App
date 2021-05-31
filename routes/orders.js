@@ -28,15 +28,19 @@ module.exports = (db) => {
       //           }
 
     // CHANGE THE USER ID TO COOKIES (REQ.SESSION?)
-    let query = ` INSERT INTO orders (user_id) VALUES ($1) RETURNING *; `
+    let query = `UPDATE orders SET status = 'closed' WHERE user_id = $1;`;
+    let query2 = `INSERT INTO orders (user_id) VALUES ($1) RETURNING *;`;
 
+    let options = [req.session.user_id];
     console.log(query);
-    db.query(query, [req.session.user_id])
-      .then(data => {
+    db.query(query, options)
+      .then(db.query(query2, options))
+      .then((data) => {
         const addToOrder = data.rows;
         res.json({ addToOrder });
       })
       .catch(err => {
+        console.log(err.message)
         res
           .status(500)
           .json({ error: err.message });
