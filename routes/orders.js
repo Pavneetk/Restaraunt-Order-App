@@ -4,7 +4,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    let query = `SELECT orders.id, name, phone_number, CURRENT_TIMESTAMP - date AS time_in_queue FROM orders JOIN users ON users.id = user_id;`;
+    let query = `SELECT orders.id, name, phone_number, CURRENT_TIMESTAMP - date AS time_in_queue, status FROM orders JOIN users ON users.id = user_id;`;
     console.log(query);
     db.query(query)
       .then(data => {

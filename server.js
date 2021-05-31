@@ -43,7 +43,6 @@ app.use(cookieParser());
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const userRoutes = require("./routes/user");
 const menuRoutes = require("./routes/menu");
 const ordersRoutes = require("./routes/orders");
 const orderRoutes = require("./routes/order");
@@ -51,7 +50,6 @@ const orderRoutes = require("./routes/order");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/user", usersRoutes(db));
 app.use("/api/menu", menuRoutes(db));
 app.use("/api/orders", ordersRoutes(db));
 app.use("/api/order", orderRoutes(db));
@@ -65,8 +63,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+let user_id;
 //Login a user with cookies
 app.get('/login/:id/', (req, res) => {
+  user_id = req.session.user_id;
   req.session.user_id = req.params.id;
   res.redirect('/');
 });
@@ -82,3 +82,7 @@ app.get('/logout/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+module.exports = {
+  user_id: 5
+}
