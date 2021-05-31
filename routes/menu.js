@@ -56,6 +56,7 @@ module.exports = (db) => {
       options.push(req.body.name);
       query += `name = '$${options.length}' `;
     }
+
     if (req.body.price) {
       options.push(req.body.price);
       query += `, price = $${options.length} `;
@@ -65,14 +66,17 @@ module.exports = (db) => {
       options.push(req.body.thumbnailPictureUrl);
       query += `, thumnailPictureURL = '$${options.length}', `;
     }
+
     if (req.body.description) {
       options.push(req.body.description);
       query += `, description = '$${options.length}' `;
     }
+
     if (req.body.category) {
       options.push(req.body.category);
       query += `, category = '$${options.length}' `;
     }
+
     options.push(req.body.menuItemId);
     query += `WHERE menu_items.id = $${options.length};`;
     console.log(query);

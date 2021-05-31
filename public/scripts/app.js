@@ -15,8 +15,34 @@ $(document).ready(function () {
 //   });
 // });
 
+<<<<<<< HEAD
 $("#appetizers").click(function () {
   $('#2')[0].scrollIntoView();
+=======
+$("#app").click(function () {
+  $('.Appetizers')[0].scrollIntoView({block: 'center'});
+});
+$("#main").click(function () {
+  $('.Mains')[0].scrollIntoView({block: 'center'});
+});
+$("#desserts").click(function () {
+  $('.Desserts')[0].scrollIntoView({block: 'center'});
+});
+$("#drinks").click(function () {
+  $('.Drinks')[0].scrollIntoView({block: 'center'});
+});
+$("#white").click(function () {
+  $('.Whites')[0].scrollIntoView({block: 'center'});
+});
+$("#red").click(function () {
+  $('.Reds')[0].scrollIntoView({block: 'center'});
+});
+$("#beer").click(function () {
+  $('.Beers')[0].scrollIntoView({block: 'center'});
+});
+$("#cocktails").click(function () {
+  $('.Cocktails')[0].scrollIntoView({block: 'center'});
+>>>>>>> df3df11abdea6422cf0d1d0270ce206f1898e787
 });
 
 
@@ -37,7 +63,11 @@ function createMenuElement(menuData) {
       <form id="${menuData.id}" class="menu-item-form">
       <h3 class="menu-item-price">${menuData.price}</h3>
         <input name="${menuData.id}" placeholder="quantity" type="text"></input>
+<<<<<<< HEAD
         <input class="menu-item-form" type="submit" value="Add To Order">
+=======
+        <button class="menu-item-button" form=${menuData.id} type="submit">Add To Order</button>
+>>>>>>> df3df11abdea6422cf0d1d0270ce206f1898e787
       </form>
       </div>
    </section>
@@ -46,10 +76,24 @@ function createMenuElement(menuData) {
 
   //loop through each obj element in the array and add the returned HTML structure to the main container
   function renderMenu(menuData) {
-    menuData.forEach(element => {
+
+    for (let i = 0; i < menuData.length; i++) {
+      const element = menuData[i];
+
       const $item = createMenuElement(element);
+      if ((i>0) && (menuData[i].category !== menuData[i-1].category)){
+        if (menuData[i].category === 'Whites') {
+          $('div.menu').append(`<h1 class="Drinks">Drinks</h1>`);
+        }
+        $('div.menu').append(`<h1 class="${menuData[i].category}">${menuData[i].category}</h1>`);
+      }
+      if (i === 0) {
+        $('div.menu').append(`<h1 class="${menuData[i].category}">${menuData[i].category}</h1>`);
+      }
+
       $('div.menu').append($item);
-    });
+    }
+
   }
 
   //ajax get request to server returns menu_items data and call rendermenu functiong with it
@@ -89,6 +133,7 @@ function createMenuElement(menuData) {
     <h5 class="price">${'asdf'}</h5>
     </div>`
   }
+<<<<<<< HEAD
 
     $("button.checkoutButton").submit(function(event) {
       console.log('STARTED AJAX',event);
@@ -114,6 +159,53 @@ function createMenuElement(menuData) {
   //    })
   //  }
 })
+=======
+    // let forms = document.getElementsBy('.menu-item-form');
+
+
+    $(document).on('submit','form.menu-item-form', function(event) {
+      console.log('STARTED AJAX',event);
+    event.preventDefault();
+    let data = $(this).Val();
+    $.ajax({
+      url: "/api/order",
+      method: "POST",
+    }).then((result) => {
+      console.log("YEAY:", result);
+    }).catch((err) => {
+      err
+    })
+  })
+
+  // const addToOrder = () => {
+
+    // }
+
+     //ajax request onClick for login button at top of page
+
+    $('.login').on('click', (req) => {
+      console.log(req);
+      // let user_id = req.session.user_id;
+      $.ajax({
+       url: `/login/3`,
+       method: "GET"
+     }).then(() => {
+       $('.loginLogout').html('<button class="logout">Logout</button>')
+      }).catch((err) => {
+        console.log(err);
+      })
+    })
+
+   $('.logout').on('click', () => {
+    $.ajax({
+    url: `/logout`,
+    method: "GET"
+    }).then(
+    $('.loginLogout').html('<button class="login">Login</button>')
+   )
+   })
+
+>>>>>>> df3df11abdea6422cf0d1d0270ce206f1898e787
 
 
 })
