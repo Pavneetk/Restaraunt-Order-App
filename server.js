@@ -43,6 +43,7 @@ app.use(cookieParser());
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
+const userRoutes = require("./routes/user");
 const menuRoutes = require("./routes/menu");
 const ordersRoutes = require("./routes/orders");
 const orderRoutes = require("./routes/order");
@@ -50,6 +51,7 @@ const orderRoutes = require("./routes/order");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
+app.use("/api/user", usersRoutes(db));
 app.use("/api/menu", menuRoutes(db));
 app.use("/api/orders", ordersRoutes(db));
 app.use("/api/order", orderRoutes(db));

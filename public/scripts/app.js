@@ -11,6 +11,9 @@ $(() => {
   });;
 });
 
+$("#appetizers").click(function () {
+  $('#2')[0].scrollIntoView();
+});
 
 //returns full HTML structure a single tweet box
 function createMenuElement(menuData) {
