@@ -58,7 +58,7 @@ function createMenuElement(menuData) {
       <form id="${menuData.id}" class="menu-item-form">
       <h3 class="menu-item-price">${menuData.price}</h3>
         <input name="${menuData.id}" placeholder="quantity" type="text"></input>
-        <button class="menu-item-button" form=${menuData.id} type="submit">Add To Order</button>
+        <button class="menu-item-button" type="submit">Add To Order</button>
       </form>
       </div>
    </section>
@@ -108,7 +108,7 @@ function createMenuElement(menuData) {
         url: "/api/orders",
         method: "POST",
       }).then((result) => {
-        console.log(result);
+        console.log("startOrderResult", result);
       })
 
     }
@@ -127,19 +127,36 @@ function createMenuElement(menuData) {
     // let forms = document.getElementsBy('.menu-item-form');
 
 
-    $(document).on('submit','form.menu-item-form', function(event) {
-      console.log('STARTED AJAX',event);
+  $(document).on('submit', 'form.menu-item-form', function(event) {
+    console.log('STARTED AJAX',event);
     event.preventDefault();
-    let data = $(this).Val();
+    let data = $(this).serialize("");
+    const text = decodeURIComponent(data)
+    console.log("data", text)
     $.ajax({
       url: "/api/order",
       method: "POST",
+      data: text
     }).then((result) => {
       console.log("YEAY:", result);
     }).catch((err) => {
       err
     })
   })
+
+//   $(document).on('submit','form.menu-item-form', function(event) {
+//     console.log('STARTED AJAX',event);
+//   event.preventDefault();
+//   let data = $(this).Val();
+//   $.ajax({
+//     url: "/api/order",
+//     method: "POST",
+//   }).then((result) => {
+//     console.log("YEAY:", result);
+//   }).catch((err) => {
+//     err
+//   })
+// })
 
   // const addToOrder = () => {
 

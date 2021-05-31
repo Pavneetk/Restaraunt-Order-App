@@ -20,15 +20,18 @@ module.exports = (db) => {
 
   router.post("/", (req, res) => {
   // CHANGE THE USER ID TO COOKIES (REQ.SESSION?)
-  let query = ` INSERT INTO menu_items_orders (order_id, menu_item_id, quantity) VALUES((SELECT orders.id FROM orders JOIN users ON users.id = user_id WHERE status = 'open' AND users.id = $1), (SELECT menu_items.id FROM menu_items GROUP BY menu_items.id HAVING menu_items.id = $2), $3); `
-
-  console.log(Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]);
-  db.query(query, [req.session.user_id, Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]])
+  let query = ` INSERT INTO menu_items_orders (order_id, menu_item_id, quantity) VALUES((SELECT orders.id FROM orders JOIN users ON users.id = user_id WHERE status = 'open' AND users.id = $1), (SELECT menu_items.id FROM menu_items GROUP BY menu_items.id HAVING menu_items.id = $2), $3) RETURNING order_id; `
+  let options = [req.session.user_id, Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]];
+  console.log("options: ", options);
+  console.log("query: ", query);
+  db.query(query, options)
     .then(data => {
+      console.log(data);
       const addToOrder = data.rows;
       res.json({ addToOrder });
     })
     .catch(err => {
+      console.log(err.message)
       res
         .status(500)
         .json({ error: err.message });
