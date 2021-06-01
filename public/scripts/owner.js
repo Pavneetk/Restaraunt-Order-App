@@ -8,11 +8,22 @@ $(document).ready(function() {
     for (let item of orderDetails) {
       items += `<h3>${item.name}: ${item.quantity}<h3>`;
     }
+    let seconds = 0;
+    if (order.time_in_queue.seconds) {
+      seconds = Math.floor(order.time_in_queue.seconds);
+    }
+    let minutes = 0;
+
+    if (order.time_in_queue.minutes) {
+      minutes += Math.floor(order.time_in_queue.minutes);
+    }
+    const cleanTime = `${minutes}: ${seconds}`
+
   return $(`
     <section id="order${order.order_id}" class="orders">
       <div class="ordersDiv">
         <h3>Order#${order.order_id}</h3>
-        <h3>Time in Queue: ${parseInt(order.time_in_queue.seconds + order.time_in_queue.minutes * 60)} Seconds</h3>
+        <h3>Time in Queue: ${cleanTime}</h3>
         <h3 class="customerName">${order.name}</h3>
         <p class="phoneNumber">
         ${order.phone_number}
@@ -36,7 +47,7 @@ $(document).ready(function() {
       const element = orders[i];
       console.log("orders[i].id", orders[i].id);
       $.ajax({
-        url: `/api/order/${orders[i].id}`,
+        url: `/api/order/${element.order_id}`,
         method: "GET"
       }).then((data) =>{
         console.log("element:", element);
@@ -60,13 +71,16 @@ $(document).ready(function() {
         $('.isOwner').css('background', '#002E45');
         $('.loginLogout').css('display', 'none');
         $('.search').css('display', 'none');
-        $.ajax({
+        setInterval(() => {$.ajax({
           url: `/api/orders`,
           method: "GET"
         }).then((data2) =>{
           console.log("data2", data2);
-          renderOrders(data2.orders);
+            $('div#orders').html('')
+            renderOrders(data2.orders);
+
       })
+  }, 5000)
     }
   }).catch((err) => console.log('err:', err.status))
 

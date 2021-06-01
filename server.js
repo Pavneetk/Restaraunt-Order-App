@@ -12,6 +12,21 @@ const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
 
+//Twilio SMS config
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+/*const client = require('twilio')(accountSid, authToken);
+Example Message
+client.messages
+  .create({
+     body: 'This is the ship that made the Kessel Run in fourteen parsecs?',
+     from: '+15878023385',
+     to: '+17805170260'
+   })
+  .then(message => console.log(message))
+  .done();
+*/
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');

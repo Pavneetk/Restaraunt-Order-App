@@ -4,7 +4,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    let query = `SELECT *, orders.id AS order_id, CURRENT_TIMESTAMP - date AS time_in_queue, status FROM orders JOIN users ON users.id = user_id WHERE orders.status = 'open' OR orders.status = 'pending';`
+    let query = `SELECT *, orders.id AS order_id, CURRENT_TIMESTAMP - date AS time_in_queue, status FROM orders JOIN users ON users.id = user_id WHERE orders.status = 'pending';`
     console.log(query);
     db.query(query)
       .then(data => {
@@ -67,7 +67,7 @@ module.exports = (db) => {
   });
 
   router.put("/", (req, res) => {
-    let query = `UPDATE orders SET status = 'pending' WHERE user_id = $1;`
+    let query = `UPDATE orders SET status = 'pending' WHERE user_id = $1 AND status = 'open';`
     db.query(query, [req.session.user_id])
     .then(data => {
       const order = data.rows;

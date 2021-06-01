@@ -217,7 +217,7 @@ function createMenuElement(menuData) {
         url: '/api/orders',
         method: 'PUT'
       }).then((result) => {
-        console.log(result)
+        console.log('PUT result:', result)
       })
 
 
