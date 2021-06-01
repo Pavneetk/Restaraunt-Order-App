@@ -15,7 +15,8 @@ $(document).ready(function () {
 //   });
 // });
 let checkoutSum = 0;
-
+let userLoggedIn = false;
+$('div.userError').hide();
 
 
 
@@ -36,9 +37,19 @@ function createMenuElement(menuData) {
       </div>
       <div class="menu-item-add">
       <form id="${menuData.id}" class="menu-item-form">
-      <h3 class="menu-item-price">${menuData.price}</h3>
-        <input name="${menuData.id}" placeholder="quantity" type="text"></input>
-        <button class="menu-item-button" type="submit">Add To Order</button>
+      <h3 class="menu-item-price">$${menuData.price}</h3>
+        <select name="${menuData.id}" placeholder="quantity" type="number" min="1" max="10">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <button class="box-1" type="submit">
+         <div class="btn btn-one">
+           <span>Add To Order</span>
+         </div>
+        </button>
       </form>
       </div>
    </section>
@@ -75,40 +86,49 @@ function createMenuElement(menuData) {
       method: "GET",
     }).then((result) => {
       renderMenu(result.menu);
+    }).catch((err) => {
+      console.log(err);
     })
   };
 
   //initiates menu_items data loading on page load
   loadData();
-  let isStarted = false;
-  console.log(isStarted);
+  // console.log(isStarted);
 
   const startOrder = () => {
-    if (isStarted === false) {
+    // let isStarted = false;
+    // if (isStarted === false) {
+      console.log('startOrderAtLeastStarted:')
       $.ajax({
         url: "/api/orders",
         method: "POST",
       }).then((result) => {
 
-
-
+        console.log('Order started, ID: ',result);
+        return result;
+      }).catch((err) => {
+        console.log('startOrderERR:', err);
       })
 
-    }
-    isStarted = true;
+    // }
+    // isStarted = true;
   }
-  startOrder();
+
   // Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]
 
     const addToOrderElement = (quantity, itemDetails) => {
     return $(`
     <div class="menuItemsOrder" id="checkout${itemDetails.id}">
+      <div>
       <h6 class="quantity">${quantity}</h6>
       <h6 class="nameOfFoodItem">${itemDetails.name}</h6>
+      </div>
+      <div>
       <h6 class="price">$${itemDetails.price}</h6>
       <form class="delete-checkout-form">
-        <button class="deleteItem" id='delete${itemDetails.id}' type="submit">X</button>
+        <button class="deleteItem" id='delete${itemDetails.id}' type="submit"><i class="fas fa-backspace"></i></button>
       </form>
+      </div>
     </div>
     `)
   }
@@ -157,10 +177,14 @@ function createMenuElement(menuData) {
   }
   $(document).on('submit', 'form.delete-checkout-form', function(event) {
       event.preventDefault();
-      let itemToDelete = (event.target.parentElement.id).substring(8);
+      console.log("event", event);
+      let itemToDelete = (event.target.parentElement.parentElement.id).substring(8);
+      console.log("itemtodelete:",itemToDelete);
       removeFromCheckout(itemToDelete);
-      let price = Number((event.target.parentNode.childNodes[5].innerText).substring(1));
-      let quantity = Number((event.target.parentNode.childNodes[1].innerText));
+      console.log(event);
+      let price = Number((event.target.parentNode.firstElementChild.innerText).substring(1));
+      let quantity = Number((event.target.parentNode.parentElement.firstElementChild.children[0].innerText));
+      console.log(price);
       $.ajax({
         url: `api/order/delete/${itemToDelete}`,
         method: "DELETE",
@@ -190,19 +214,34 @@ function createMenuElement(menuData) {
 
     // }
 
-     //ajax request onClick for login button at top of page
+    //ajax request onClick for login button at top of page
 
-     $(document).on('submit', 'form.login', function(event) {
-      event.preventDefault();
-      console.log(event);
+    $(document).on('submit', 'form.login', function(event) {
+      const data = $(this).serialize();//creates a text string in standard URL-encoded notation
+      const text = decodeURIComponent(data.substring(7)); //decoded the urlencoded string
+      console.log(text);
+      if (text !== "1") {
+        event.preventDefault();
+      }
       // let user_id = req.session.user_id;
+
+
+      console.log(text);
       $.ajax({
-       url: `/login/3`,
-       method: "GET"
-     }).then(() => {
-      $('div.userError').css({'display':'none'});
-       $('.login').html('<button class="logout" type="submit">Welcome User! -- Logout</button>').removeClass('login').addClass('logout');
-      }).catch((err) => {
+        url: `/login/${text}`,
+        method: "GET"
+      }).then(() => {
+        $('div.userError').hide();
+        $('.login').html(`<button class="logout" type="submit">Welcome User! ${text} Logout</button>`).removeClass('login').addClass('logout');
+        userLoggedIn = true;
+      }).then(() => {
+
+        startOrder();
+
+      }).then((result) => {
+        console.log("start order", result);
+      })
+      .catch((err) => {
         console.log(err);
       })
 
@@ -215,7 +254,8 @@ function createMenuElement(menuData) {
     method: "GET"
     }).then(() =>{
 
-    $('.logout').html('<button class="login" type="submit">Login</button>').removeClass('logout').addClass('login');
+    $('.logout').html('<input type="text" name="userId" id="userIdInput" placeholder="User ID"></input><button class="login" type="submit">Login</button>').removeClass('logout').addClass('login');
+      userLoggedIn = false;
     })
    })
 
@@ -249,7 +289,7 @@ function createMenuElement(menuData) {
       <h3 id="checkoutSum">$${Math.floor(checkoutSum * 1.12 * 100) / 100}</h3>
       </div>
         <form class="payForOrder">
-        <button class="deleteItem" id='delete${order.id}' type="submit">Pay</button>
+        <button class="pay" id='payForFood' type="submit">Pay</button>
       </form>
     </section>
     `)
@@ -261,18 +301,26 @@ function createMenuElement(menuData) {
 
     $('#checkoutButton').on('click', (event) => {
       event.preventDefault();
-      if ($('form.logout')) {
-        $('div.userError').css({'display':'none'});
+      if ($('button.logout') && userLoggedIn) {
+        $('div.userError').hide();
+        const data = 'checkout';
       $.ajax({
         url: '/api/orders',
-        method: 'PUT'
+        method: 'PUT',
+        data: {
+          paid: false
+        }
       }).then((result) => {
+        $('div.userError').hide();
         $('.notOwner').css('display', 'none');
         $('.search').css('display', 'none');
         $('.isOwner').css('display', 'none');
         $('.checkoutTime').css('background', '#002E45');
         $('body').css('background', '#002E45');
         $('div.container-scroll').css('display', 'none');
+        $('div#checkoutTime').css('display', 'flex');
+        $('.login').css('display', 'none');
+        $('.logout').css('display', 'none');
 
 
           var position = $(".checkoutTime").offset().top;
@@ -282,26 +330,54 @@ function createMenuElement(menuData) {
 
 
 
-        console.log('result:', result.order);
+        console.log('result:', result);
         let user = result.order[0];
         $.ajax({
           url: `/api/order/${user.id}`,
           method: 'GET'
         }).then((result2) => {
           console.log('result2:', result2)
+          $('div.userError').hide();
           renderCheckoutElement(checkoutElement(user, result2.order))
         })
       }).catch((err) => {
         console.log(err);
       })
       }
-      if ($('form.login')) {
-        $('div.userError').css({'display':'flex'});
+      if (!userLoggedIn) {
+        $('div.userError').hide();
+        $('div.userError').slideDown("slow");
       }
 
 
     })
 
+    $(document).on('click', '#payForFood', function(event) {
+      event.preventDefault();
+      const data = 'pay';
+      $.ajax({
+        url: '/api/orders',
+        method: 'PUT',
+        data: {
+          paid: true
+        }
+      }).then((result) => {
+        if(result.user_id % 2 === 0){
+          let userNumber;
+        }
+        /*
+        $.ajax({
+          url:'/sendSMS/',
+          method: 'GET',
+          data: {
+            number: result.number,
+            message: `Your Order ${result.id} is being prepared!`
+          }
+        })*/
+
+        console.log(result);
+      })
+    })
 
 
 

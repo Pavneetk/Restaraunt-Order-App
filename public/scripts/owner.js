@@ -26,16 +26,22 @@ $(document).ready(function() {
         <h3>Time in Queue: ${cleanTime}</h3>
         <h3 class="customerName">${order.name}</h3>
         <p class="phoneNumber">
-        ${order.phone_number}
+          ${order.phone_number}
         </p>
       </div>
       <div class="orderDetails">
         ${items}
       </div>
-      <form class="control">
+      <div class="control">
+      <form id="alert">
         <input type="text" placeholder="Enter Time Alert via SMS">
-        <button>Send Alert</button>
+        <button name="order_id">Send Alert</button>
       </form>
+      <form class="completeOrder">
+        <button>Bump Order</button>
+      </form>
+      </div>
+
    </section>
    <br>
     `)
@@ -69,20 +75,39 @@ $(document).ready(function() {
         // $('nav').css('display', 'none')
         $('body').css('background', '#002E45')
         $('.isOwner').css('background', '#002E45');
-        $('.loginLogout').css('display', 'none');
+        $('.login').css('display', 'none');
+        $('.logout').css('display', 'none');
         $('.search').css('display', 'none');
-        setInterval(() => {$.ajax({
-          url: `/api/orders`,
-          method: "GET"
-        }).then((data2) =>{
-          console.log("data2", data2);
-            $('div#orders').html('')
-            renderOrders(data2.orders);
+        $('#checkoutTime').css('display', 'none');
+        $('div#orders').css('display', 'block');
 
-      })
+        setInterval(() => {
+          $.ajax({
+            url: `/api/orders`,
+            method: "GET"
+          }).then((data2) =>{
+            console.log("data2", data2);
+              $('div#orders').html('')
+              renderOrders(data2.orders);
+
+        })
   }, 5000)
     }
   }).catch((err) => console.log('err:', err.status))
+
+
+  // $(document).on('submit', '#alert', function() {
+  //   $.ajax({
+  //     url:'/sendSMS/',
+  //     method: 'GET',
+  //     data: {
+  //       number: result.number,
+  //       message: `Your Order ${result.id} is being prepared!`
+  //     }
+  //   })
+  // })
+
+
 
 
 })

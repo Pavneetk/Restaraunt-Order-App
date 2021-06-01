@@ -40,7 +40,8 @@
       <input type="text" class='search' placeholder="Search for your dish...">
       <i type='submit' class="fas fa-search"></i>
     </div>
-      <form class='login' >
+      <form class='login'>
+        <input type="text" name="userId" id="userIdInput" placeholder="User ID">
         <button class="login" type='submit'>Login</button>
       </form>
   </nav>
@@ -63,14 +64,14 @@
   <main class='container notOwner'>
 
     <div class='accordian'>
-      <h2 id="app"><i class="fas fa-angle-right"></i>Appetizers</h2>
-      <h2 id="main"><i class="fas fa-angle-right"></i>Mains</h2>
-      <h2 id="desserts"><i class="fas fa-angle-right"></i>Desserts</h2>
-      <h2 id="drinks"><i class="fas fa-angle-right"></i>Drinks</h2>
-      <h3 id="white"><i class="fas fa-angle-double-right"></i></i>White Wine</h3>
-      <h3 id="red"><i class="fas fa-angle-double-right"></i></i>Red Wine</h3>
-      <h3 id="beer"><i class="fas fa-angle-double-right"></i></i>Beer</h3>
-      <h3 id="cocktails"><i class="fas fa-angle-double-right"></i></i>Cocktails</h3>
+      <h2 id="app"><i class="fas fa-anchor"></i>&nbspAppetizers</h2>
+      <h2 id="main"><i class="fas fa-anchor"></i>&nbspMains</h2>
+      <h2 id="desserts"><i class="fas fa-anchor"></i>&nbspDesserts</h2>
+      <h2 id="drinks"><i class="fas fa-anchor"></i>&nbspDrinks</h2>
+      <h3 id="white"><i class="fas fa-wine-bottle"></i>&nbspWhite Wine</h3>
+      <h3 id="red"><i class="fas fa-wine-bottle"></i>&nbspRed Wine</h3>
+      <h3 id="beer"><i class="fas fa-beer"></i>&nbspBeer</h3>
+      <h3 id="cocktails"><i class="fas fa-cocktail"></i>&nbspCocktails</h3>
     </div>
 
 
@@ -81,9 +82,11 @@
     <div class='checkout'>
       <h3 id="checkoutAppendage">Checkout:</h3>
       <h3 id="checkoutSum">Subtotal: $0.00</h3>
-      <form id="checkout"></form>
-      <button form="checkout" type="submit" id="checkoutButton" >Checkout</button>
-      <div class="userError"><i class="fas fa-exclamation-triangle"></i>
+      <form id="checkout">
+        <button form="checkout" type="submit" id="checkoutButton" ><i class="fas fa-shopping-cart"></i>&nbspCheckout</button>
+      </form>
+      <div class="userError">
+        <i class="fas fa-exclamation-triangle"></i>
         <span>Please Log in First</span>
         <i class="fas fa-exclamation-triangle"></i></div>
     </div>
@@ -91,19 +94,19 @@
 
 
 
-
+<!-- this main replaces the menu and is only rendered at checkout -->
   <main class="checkoutTime">
     <div id="checkoutTime">
-
     </div>
   </main>
 
-  <main class="isOwner">
 
+<!-- this main replaces the menu when the owner is logged in -->
+  <main class="isOwner">
     <div id="orders">
     </div>
-
   </main>
+
   </body>
 </html>
 

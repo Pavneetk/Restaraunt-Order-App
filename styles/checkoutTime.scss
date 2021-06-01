@@ -3,7 +3,7 @@
 div#checkoutTime {
   margin: 0 auto;
   padding: 2%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: flex-start;
   font-family: $mainFont;
@@ -58,3 +58,4 @@ border-bottom: 0.5px solid $darkBlue;
 .tax {
   border-bottom: 0.5px solid $darkBlue;
 }
+
