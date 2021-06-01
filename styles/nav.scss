@@ -44,11 +44,22 @@ div.search {
   align-self:center;
 }
 
-div.login {
+form.login {
   padding: 5px;
   font-family: $mainFont;
 }
-div.loginLogout button {
+form.login button {
+  width: 100px;
+  margin-left: 100px;
+  margin-right:10px;
+  background-color: transparent;
+  color: $lightBackgroundColor;
+  font-size: 17px;
+  border-radius: 5px;
+  border: none;
+}
+
+form.logout button {
   width: 100px;
   margin-left: 100px;
   margin-right:10px;

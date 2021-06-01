@@ -19,6 +19,8 @@ section.menu_item {
     padding: 5px;
     width: 145px;
     height: 145px;
+    object-fit: cover;
+    object-position: center;
 }
 
   // .menu-item-name {
@@ -59,4 +61,24 @@ section.menu_item:hover {
 
 .Whites, .Reds, .Beers, .Cocktails {
   font-size: 1.5rem;
+}
+
+div.menu h1 {
+  color: $darkBlue;
+  padding-left: 1.5rem;
+
+  font-family: $mainFont;
+}
+
+div.menu section.menu_item.Whites {
+  font-size: medium;
+}
+div.menu section.menu_item.Reds {
+  font-size: medium;
+}
+div.menu section.menu_item.Beers {
+  font-size: medium;
+}
+div.menu section.menu_item.Cocktails {
+  font-size: medium;
 }

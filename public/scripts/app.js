@@ -14,51 +14,19 @@ $(document).ready(function () {
 //     }
 //   });
 // });
+let checkoutSum = 0;
 
-$("#app").click(function () {
-  $('.Appetizers')[0].scrollIntoView({block: 'center'});
-});
-$("#main").click(function () {
-  $('.Mains')[0].scrollIntoView({block: 'center'});
-});
-$("#desserts").click(function () {
-  $('.Desserts')[0].scrollIntoView({block: 'center'});
-});
-$("#drinks").click(function () {
-  $('.Drinks')[0].scrollIntoView({block: 'center'});
-});
-$("#white").click(function () {
-  $('.Whites')[0].scrollIntoView({block: 'center'});
-});
-$("#red").click(function () {
-  $('.Reds')[0].scrollIntoView({block: 'center'});
-});
-$("#beer").click(function () {
-  $('.Beers')[0].scrollIntoView({block: 'center'});
-});
-$("#cocktails").click(function () {
-  $('.Cocktails')[0].scrollIntoView({block: 'center'});
-});
 
-$(".fa-search").click(function (data) {
-  let searchParam = $('input.search').val();
-  $.ajax({
-    url: `/api/menu/name/${searchParam}`,
-    method: 'GET'
-  }).then((result)=> {
-    $(`#${result.menu_item[0].id}`)[0].scrollIntoView({block: 'center'});
-  })
-
-  })
 
 
 
 //returns full HTML structure a single menu item box
 function createMenuElement(menuData) {
+  // console.log(menuData.thumbnail_picture_url)
   return $(`
     <section id="menu${menuData.id}" class="menu_item ${menuData.category}">
       <div class="menu_item_img">
-        <img src="${menuData.thumbnail_picture_url}">
+        <img class="menu_item_pictures" src="${menuData.thumbnail_picture_url}">
       </div>
       <div class="nameDescription">
         <h3 class="menu-item-name">${menuData.name}</h3>
@@ -86,18 +54,19 @@ function createMenuElement(menuData) {
       const $item = createMenuElement(element);
       if ((i>0) && (menuData[i].category !== menuData[i-1].category)){
         if (menuData[i].category === 'Whites') {
-          $('div.menu').append(`<h1 class="Drinks">Drinks</h1>`);
+          $('div.menu').append(`<h1 class="Drinks menuType">Drinks</h1>`);
         }
-        $('div.menu').append(`<h1 class="${menuData[i].category}">${menuData[i].category}</h1>`);
+        $('div.menu').append(`<h1 class="${menuData[i].category} menuType">${menuData[i].category}</h1>`);
       }
       if (i === 0) {
-        $('div.menu').append(`<h1 class="${menuData[i].category}">${menuData[i].category}</h1>`);
+        $('div.menu').append(`<h1 class="${menuData[i].category} menuType">${menuData[i].category}</h1>`);
       }
 
       $('div.menu').append($item);
     }
 
   }
+
 
   //ajax get request to server returns menu_items data and call rendermenu functiong with it
   function loadData() {
@@ -120,7 +89,9 @@ function createMenuElement(menuData) {
         url: "/api/orders",
         method: "POST",
       }).then((result) => {
-        console.log("startOrderResult", result);
+
+
+
       })
 
     }
@@ -131,11 +102,13 @@ function createMenuElement(menuData) {
 
     const addToOrderElement = (quantity, itemDetails) => {
     return $(`
-    <div class="menuItemsOrder">
+    <div class="menuItemsOrder" id="checkout${itemDetails.id}">
       <h6 class="quantity">${quantity}</h6>
       <h6 class="nameOfFoodItem">${itemDetails.name}</h6>
       <h6 class="price">$${itemDetails.price}</h6>
-      <button class="deleteItem">X</button>
+      <form class="delete-checkout-form">
+        <button class="deleteItem" id='delete${itemDetails.id}' type="submit">X</button>
+      </form>
     </div>
     `)
   }
@@ -145,6 +118,8 @@ function createMenuElement(menuData) {
     $('#checkoutAppendage').append(element);
   };
     // let forms = document.getElementsBy('.menu-item-form');
+
+
 
 
   $(document).on('submit', 'form.menu-item-form', function(event) {
@@ -165,13 +140,37 @@ function createMenuElement(menuData) {
       }).then((itemDetail) => {
         let quan = quantity.addToOrder[0].quantity;
         let itemDetails = itemDetail.menu[0];
-        console.log('itemDetail:', itemDetails,'quantity:', quan)
+
+        console.log('itemDetail:', itemDetails,'quantity:', quan);
+        checkoutSum += (itemDetails.price * quan);
+        console.log("checkoutSum", checkoutSum);
         addToOrder(addToOrderElement(quan, itemDetails));
+        $('#checkoutSum').html(`Subtotal: $${checkoutSum}.00`);
       }).catch((err) => {
       console.log(err.message);
       })
     })
   })
+
+  function removeFromCheckout(id) {
+    $(`#checkout${id}`).remove();
+  }
+  $(document).on('submit', 'form.delete-checkout-form', function(event) {
+      event.preventDefault();
+      let itemToDelete = (event.target.parentElement.id).substring(8);
+      removeFromCheckout(itemToDelete);
+      let price = Number((event.target.parentNode.childNodes[5].innerText).substring(1));
+      let quantity = Number((event.target.parentNode.childNodes[1].innerText));
+      $.ajax({
+        url: `api/order/delete/${itemToDelete}`,
+        method: "DELETE",
+      }).then((res) => {
+        console.log("itemtodelete:", res);
+        checkoutSum -= (price * quantity);
+       $('#checkoutSum').html(`Subtotal: $${checkoutSum}.00`);
+      })
+    })
+
 
 //   $(document).on('submit','form.menu-item-form', function(event) {
 //     console.log('STARTED AJAX',event);
@@ -193,46 +192,118 @@ function createMenuElement(menuData) {
 
      //ajax request onClick for login button at top of page
 
-     $(document).on('submit', '.login', function(event) {
-
-      console.log(req);
+     $(document).on('submit', 'form.login', function(event) {
+      event.preventDefault();
+      console.log(event);
       // let user_id = req.session.user_id;
       $.ajax({
        url: `/login/3`,
        method: "GET"
      }).then(() => {
-       $('.loginLogout').html('<button class="logout">Welcome User! -- Logout</button>')
+      $('div.userError').css({'display':'none'});
+       $('.login').html('<button class="logout" type="submit">Welcome User! -- Logout</button>').removeClass('login').addClass('logout');
       }).catch((err) => {
         console.log(err);
       })
 
     })
 
-
-    $('#checkoutButton').on('click', (event) => {
-      event.preventDefault();
-;
-
-      $.ajax({
-        url: '/api/orders',
-        method: 'PUT'
-      }).then((result) => {
-        console.log('PUT result:', result)
-      })
-
-
-    })
-
-
-    $(document).on('submit', '.logout', function(event) {
-
+   $(document).on('submit', 'form.logout', function(event) {
+    event.preventDefault();
     $.ajax({
     url: `/logout`,
     method: "GET"
     }).then(() =>{
-    $('.loginLogout').html('<button class="login">Login</button>')
+
+    $('.logout').html('<button class="login" type="submit">Login</button>').removeClass('logout').addClass('login');
     })
    })
+
+
+     const checkoutElement = (order, items) => {
+      let orderedItems = ``;
+      for (item of items) {
+      orderedItems += `
+      <div class="eachOrder">
+      <h3>${item.quantity}&nbsp&nbsp</h3>
+      <h3 class="name">${item.name}&nbsp&nbsp</h3>
+      <h3>$${item.price}</h3>
+      </div>
+      `;
+    }
+    return $(`
+    <section id="checkout">
+      <h1>Checkout</h1>
+
+      ${orderedItems}
+      <div class="subtotal">
+      <h3>Subtotal</h3>
+      <h3 id="checkoutSum">$${checkoutSum}</h3>
+      </div>
+      <div class="tax">
+      <h3>Local Tax (12%)</h3>
+      <h3 id="checkoutSum">$${Math.floor(checkoutSum * 0.12 * 100) / 100}</h3>
+      </div>
+      <div class="total">
+      <h3>Total</h3>
+      <h3 id="checkoutSum">$${Math.floor(checkoutSum * 1.12 * 100) / 100}</h3>
+      </div>
+        <form class="payForOrder">
+        <button class="deleteItem" id='delete${order.id}' type="submit">Pay</button>
+      </form>
+    </section>
+    `)
+  }
+
+  const renderCheckoutElement = (element) => {
+    $('div#checkoutTime').append(element);
+  }
+
+    $('#checkoutButton').on('click', (event) => {
+      event.preventDefault();
+      if ($('form.logout')) {
+        $('div.userError').css({'display':'none'});
+      $.ajax({
+        url: '/api/orders',
+        method: 'PUT'
+      }).then((result) => {
+        $('.notOwner').css('display', 'none');
+        $('.search').css('display', 'none');
+        $('.isOwner').css('display', 'none');
+        $('.checkoutTime').css('background', '#002E45');
+        $('body').css('background', '#002E45');
+        $('div.container-scroll').css('display', 'none');
+
+
+          var position = $(".checkoutTime").offset().top;
+          $("HTML, BODY").animate({
+              scrollTop: position
+          }, 1000);
+
+
+
+        console.log('result:', result.order);
+        let user = result.order[0];
+        $.ajax({
+          url: `/api/order/${user.id}`,
+          method: 'GET'
+        }).then((result2) => {
+          console.log('result2:', result2)
+          renderCheckoutElement(checkoutElement(user, result2.order))
+        })
+      }).catch((err) => {
+        console.log(err);
+      })
+      }
+      if ($('form.login')) {
+        $('div.userError').css({'display':'flex'});
+      }
+
+
+    })
+
+
+
 
 
 

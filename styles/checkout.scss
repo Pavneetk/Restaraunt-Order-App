@@ -8,6 +8,7 @@
     border-radius: 10px;
     margin: 1rem;
     min-height: 300px;
+    font-family: $mainFont;
     button {
       margin-bottom: 10px;
     }
@@ -36,3 +37,14 @@
     }
   }
 
+div.userError {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  color:	#FF0000;
+  border: 3px solid #FF0000;
+  padding: 5px;
+  margin-top: 5px;
+}

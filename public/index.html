@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/styles/checkout.css" type="text/css">
     <link rel="stylesheet" href="/styles/menu_items.css" type="text/css" />
     <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/checkoutTime.css" type="text/css">
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -20,8 +21,8 @@
     <!-- sidebar floating functionality -->
     <script type="text/javascript" src="/scripts/sidebar.js"></script>
 
-    <!-- scroll down with button functionality -->
-    <script src="/scripts/scrollDown.js" type="text/javascript"></script>
+    <!-- scroll down with button functionality as well as scroll to sidebar food categories -->
+    <script src="/scripts/scroll.js" type="text/javascript"></script>
 
     <!-- Montserrat Font style-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -39,9 +40,9 @@
       <input type="text" class='search' placeholder="Search for your dish...">
       <i type='submit' class="fas fa-search"></i>
     </div>
-      <div class='loginLogout' type='submit'>
-        <button class="login" >Login</button>
-      </div>
+      <form class='login' >
+        <button class="login" type='submit'>Login</button>
+      </form>
   </nav>
 
     <header>
@@ -62,14 +63,14 @@
   <main class='container notOwner'>
 
     <div class='accordian'>
-      <h2 id="app">Appetizers</h2>
-      <h2 id="main">Mains</h2>
-      <h2 id="desserts">Desserts</h2>
-      <h2 id="drinks">Drinks</h2>
-      <h3 id="white">White Wine</h3>
-      <h3 id="red">Red Wine</h3>
-      <h3 id="beer">Beer</h3>
-      <h3 id="cocktails">Cocktails</h3>
+      <h2 id="app"><i class="fas fa-angle-right"></i>Appetizers</h2>
+      <h2 id="main"><i class="fas fa-angle-right"></i>Mains</h2>
+      <h2 id="desserts"><i class="fas fa-angle-right"></i>Desserts</h2>
+      <h2 id="drinks"><i class="fas fa-angle-right"></i>Drinks</h2>
+      <h3 id="white"><i class="fas fa-angle-double-right"></i></i>White Wine</h3>
+      <h3 id="red"><i class="fas fa-angle-double-right"></i></i>Red Wine</h3>
+      <h3 id="beer"><i class="fas fa-angle-double-right"></i></i>Beer</h3>
+      <h3 id="cocktails"><i class="fas fa-angle-double-right"></i></i>Cocktails</h3>
     </div>
 
 
@@ -79,16 +80,23 @@
 
     <div class='checkout'>
       <h3 id="checkoutAppendage">Checkout:</h3>
-      <h3>Subtotal</h3>
+      <h3 id="checkoutSum">Subtotal: $0.00</h3>
       <form id="checkout"></form>
       <button form="checkout" type="submit" id="checkoutButton" >Checkout</button>
+      <div class="userError"><i class="fas fa-exclamation-triangle"></i>
+        <span>Please Log in First</span>
+        <i class="fas fa-exclamation-triangle"></i></div>
     </div>
   </main>
 
 
 
 
+  <main class="checkoutTime">
+    <div id="checkoutTime">
 
+    </div>
+  </main>
 
   <main class="isOwner">
 

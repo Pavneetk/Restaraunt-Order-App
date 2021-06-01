@@ -1,0 +1,60 @@
+@import '_variables';
+
+div#checkoutTime {
+  margin: 0 auto;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: $mainFont;
+  color: $darkBlue;
+  border: 3px solid $backgroundColor;
+  border-radius: 10px;
+  background-color: $lightBackgroundColor;
+  padding: 0;
+  width: 60%;
+  min-height: 900px;
+  form {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    button {
+      width: 200px;
+      margin-top: 50px;
+      // background-color: $lightSkyBlue;
+      // border-radius: 10%;
+      // border: none;
+
+    }
+  }
+  h1 {
+    text-align: center;
+    color: $mainFontColor;
+  }
+}
+
+.eachOrder {
+width: 400px;
+display: flex;
+margin-top: 5%;
+justify-content: space-between;
+border-bottom: 0.5px solid $darkBlue;
+  .name {
+    margin-right: 50px;
+    margin-left: 20px;
+  }
+}
+
+#checkoutSum {
+  justify-self: flex-end;
+}
+.subtotal, .tax, .total {
+  display: flex;
+  justify-content: space-between;
+}
+.subtotal, .tax {
+  font-size: 12px;
+}
+.tax {
+  border-bottom: 0.5px solid $darkBlue;
+}

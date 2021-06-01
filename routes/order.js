@@ -36,6 +36,42 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
 });
+  // router.delete("/", (req, res) => {
+
+  //   //let query = `DELETE FROM orders WHERE orders.id = $1;`;
+  //   let query = `DELETE FROM menu_items_orders WHERE orders.id = $1`;
+
+  //   //db.query(query, [req.body.ordersId])
+  //   db.query(query, [req.body.ordersId])
+  //   .then(data => {
+  //     const orders = data.rows;
+  //     res.json({ orders });
+  //   })
+  //   .catch(err => {
+  //     res
+  //       .status(500)
+  //       .json({ error: err.message });
+  // });
+
+// });
+  router.delete("/delete/:id", (req, res) => {
+  //let query = `DELETE FROM orders WHERE orders.id = $1;`;
+  let query = `DELETE FROM menu_items_orders WHERE menu_item_id = $1 RETURNING *;`;
+
+  //db.query(query, [req.body.ordersId])
+  db.query(query, [req.params.id])
+  .then(data => {
+    const orders = data.rows;
+    res.json({ orders });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+});
+
+});
+
   return router;
 };
 

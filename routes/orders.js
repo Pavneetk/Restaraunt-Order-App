@@ -26,7 +26,7 @@ module.exports = (db) => {
     let options = [req.session.user_id];
     console.log(req)
     if(!req.session.user_id){
-      return res.send("You must be logged in.");
+      return 1;
     } else if (req.session.user_id === 1){
       console.log("you are the owner")
       return res.send("Owners can't order.");
@@ -67,18 +67,23 @@ module.exports = (db) => {
   });
 
   router.put("/", (req, res) => {
-    let query = `UPDATE orders SET status = 'pending' WHERE user_id = $1 AND status = 'open';`
-    db.query(query, [req.session.user_id])
-    .then(data => {
-      const order = data.rows;
-      res.json({ order });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-  })
+    let query = `UPDATE orders SET status = 'pending' WHERE user_id = $1 AND status = 'open' RETURNING *;`;
+    if (req.session.user_id && req.session.user_id !== 1){
+     db.query(query, [req.session.user_id])
+       .then(data => {
+             const order = data.rows;
+             res.json({ order });
+             })
+        .catch(err => {
+                res
+                  .status(500)
+                  .json({ error: err.message });
+                      });
+      } else {
+        return res.status(500);
+      }
+  }
+  )
 
   return router;
 }
