@@ -40,17 +40,15 @@ module.exports = (db) => {
       })
   });
 
-  router.get("/name/:", (req, res) => {
-    let query = `SELECT * FROM menu_items WHERE menu_items.name LIKE %$1%;`;
-console.log('ajax sent');
-    db.query(query, [req.params.name])
+  router.get("/name/:name", (req, res) => {
+    let query = `SELECT menu_items.id FROM menu_items WHERE menu_items.name LIKE '%${req.params.name}%';`;
+    db.query(query)
       .then((data) => {
-        console.log(data);
         const menu_item = data.rows;
         res.json({ menu_item });
       })
       .catch((err) => {
-        console.log(err.message,'quary');
+        console.log(err.message,);
         res
           .status(500)
           .json({ error: err.message });

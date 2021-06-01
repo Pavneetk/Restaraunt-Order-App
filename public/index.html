@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="/styles/accordian.css" type="text/css">
     <link rel="stylesheet" href="/styles/checkout.css" type="text/css">
     <link rel="stylesheet" href="/styles/menu_items.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/owner.js"></script>
 
     <!-- sidebar floating functionality -->
     <script type="text/javascript" src="/scripts/sidebar.js"></script>
@@ -57,7 +59,7 @@
   </div>
   </header>
 
-  <main class='container'>
+  <main class='container notOwner'>
 
     <div class='accordian'>
       <h2 id="app">Appetizers</h2>
@@ -79,10 +81,19 @@
       <h3 id="checkoutAppendage">Checkout:</h3>
       <h3>Subtotal</h3>
       <form id="checkout"></form>
-      <button form="checkout" type="submit" class="checkoutButton" >Checkout</button>
+      <button form="checkout" type="submit" id="checkoutButton" >Checkout</button>
     </div>
+  </main>
 
 
+
+
+
+
+  <main class="isOwner">
+
+    <div id="orders">
+    </div>
 
   </main>
   </body>

@@ -41,14 +41,12 @@ $("#cocktails").click(function () {
 });
 
 $(".fa-search").click(function (data) {
-  let searchParam = $('input.search').val();//LIKE name of dish
-//us db query to find item and its id
-
+  let searchParam = $('input.search').val();
   $.ajax({
-    url: `/api/menu/name/:${searchParam}`,
+    url: `/api/menu/name/${searchParam}`,
     method: 'GET'
   }).then((result)=> {
-    console.log(result,"ajax");
+    $(`#${result.menu_item[0].id}`)[0].scrollIntoView({block: 'center'});
   })
 
   })
@@ -58,7 +56,7 @@ $(".fa-search").click(function (data) {
 //returns full HTML structure a single menu item box
 function createMenuElement(menuData) {
   return $(`
-    <section id="${menuData.id}" class="menu_item ${menuData.category}">
+    <section id="menu${menuData.id}" class="menu_item ${menuData.category}">
       <div class="menu_item_img">
         <img src="${menuData.thumbnail_picture_url}">
       </div>
@@ -211,7 +209,19 @@ function createMenuElement(menuData) {
     })
 
 
-    $()
+    $('#checkoutButton').on('click', (event) => {
+      event.preventDefault();
+;
+
+      $.ajax({
+        url: '/api/orders',
+        method: 'PUT'
+      }).then((result) => {
+        console.log(result)
+      })
+
+
+    })
 
 
     $(document).on('submit', '.logout', function(event) {

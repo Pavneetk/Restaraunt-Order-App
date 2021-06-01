@@ -9,15 +9,16 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/user", (req, res) => {
+  router.get("/", (req, res) => {
 
-    db.query(`SELECT users.name FROM users WHERE users.id = $1;`, [req.session.user_id])
+    db.query(`SELECT users.is_owner FROM users WHERE users.id = $1;`, [req.session.user_id])
       .then(data => {
         const user = data.rows[0];
         console.log(user)
         res.json({ user });
       })
       .catch(err => {
+        console.log(err.message);
         res
         .status(500)
           .json({ error: err.message });

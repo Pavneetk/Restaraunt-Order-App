@@ -31,6 +31,20 @@ main {
   background-color: $backgroundColor;
 }
 
+div#orders {
+  margin: 3rem;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: $mainFont;
+  color: $darkBlue;
+  border: 3px solid $backgroundColor;
+  border-radius: 10px;
+  background-color: $lightBackgroundColor;
+  padding: 0;
+}
 
 
 
