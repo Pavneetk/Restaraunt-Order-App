@@ -131,9 +131,10 @@ div.userError {
       background-color: $lightBrownBeige;
       max-height:300px;
       z-index: 10;
-      .menuItemsOrder button{
+      .deleteItem {
         border: none;
-        color: $darkBlue;
+        background-color: transparent;
+        color: $electicYellow;
         width: 30px;
         height: 30px;
         font-size: 24px;

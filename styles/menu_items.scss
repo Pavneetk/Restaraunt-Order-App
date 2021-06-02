@@ -169,12 +169,21 @@ select {
 }
 
 
-@media (max-width: 1600px) {
+@media (max-width: 1750px) {
   section.menu_item {
     img {
       width: 1.2vw;
     }
+    p {
+      font-size: 1.5vw;
+    }
+    .menu-item-name {
+      font-size: 1.5vw;
+    }
   }
+  // section.menu_item p {
+  //   font-size: 1.5vw;
+  // }
 }
 
 @media (max-width: 1200px) {
@@ -182,12 +191,20 @@ select {
     .menu_item_img {
       width: 16vw;
     }
+    .menu-item-name {
+      font-size: 1.75vw;
+    }
   }
 }
 
 @media (max-width: 1050px) {
-  section.menu_item p {
-    font-size: 1.2vw;
+  section.menu_item {
+    p {
+      font-size: 2vw;
+    }
+    .menu-item-name {
+      font-size: 2.2vw;
+    }
   }
   select {
     width: 80%;
@@ -198,7 +215,25 @@ select {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 900px) {
+  section.menu_item {
+    p {
+      font-size: 2.2vw;
+    }
+    .menu-item-name {
+      font-size: 2.4vw;
+    }
+  }
+  select {
+    width: 80%;
+    align-self: flex-end;
+  }
+  div.btn.btn-one {
+    font-size: 1.3vw;
+  }
+}
+
+@media (max-width: 800px) {
     section.menu_item {
     padding: 0 1vw;
     .menu_item_img img {
@@ -217,15 +252,51 @@ select {
     width: 20vw;
     }
     .menu-item-price {
-      font-size: 4vw;
+      font-size: 3.5vw;
     }
     .btn span {
       font-size: 2.5vw;
       width: 30vw;
     }
+    .menu-item-name {
+      font-size: 2.8vw;
+    }
+    p {
+    font-size: 2.4vw;
+    }
   }
-  section.menu_item p {
-    font-size: 1.8vw;
+}
+
+@media (max-width: 700px) {
+    section.menu_item {
+    padding: 0 1vw;
+    .menu_item_img img {
+      width: 15vw;
+      height: 15vw;
+    }
+    div.nameDescription {
+      height: 100%;
+      padding: 0% 5% 0% 5%;
+    }
+    .menu_item_img {
+      width: 15vw;
+      height: 15vw;
+    }
+    .menu-item-form {
+    width: 20vw;
+    }
+    .menu-item-price {
+      font-size: 3.5vw;
+    }
+    .btn span {
+      font-size: 2.5vw;
+    }
+    p {
+    font-size: 2.6vw;
+    }
+    .menu-item-name {
+      font-size: 3vw;
+    }
   }
 
 

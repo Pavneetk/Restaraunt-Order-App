@@ -124,7 +124,7 @@ function createMenuElement(menuData) {
       <h6 class="quantity">${quantity}</h6>
       <h6 class="nameOfFoodItem">${itemDetails.name}</h6>
       </div>
-      <div>
+      <div class="price&delete">
       <h6 class="price">$${itemDetails.price}</h6>
       <form class="delete-checkout-form">
         <button class="deleteItem" id='delete${itemDetails.id}' type="submit"><i class="fas fa-backspace"></i></button>
@@ -376,7 +376,7 @@ function createMenuElement(menuData) {
           paid: true
         }
       }).then((result) => {
-        console.log(result);
+        console.log("Here is your result", result);
         let userNumber = '';
         let orderId = result.order[0].id;
 
@@ -410,14 +410,6 @@ function createMenuElement(menuData) {
           }, 10);
         })
       }).catch(err => console.log(err))
-
-
-
       })
     })
-
-
-
-
-
 })
