@@ -20,7 +20,7 @@ $(document).ready(function() {
     const cleanTime = `${minutes}: ${seconds}`
 
   return $(`
-    <section id="order${order.order_id}" class="orders">
+    <section id="${order.order_id}" class="orders">
       <div class="ordersDiv">
         <h3>Order#${order.order_id}</h3>
         <h3>Time in Queue: ${cleanTime}</h3>
@@ -33,11 +33,11 @@ $(document).ready(function() {
         ${items}
       </div>
       <div class="control">
-      <form id="alert">
-        <input type="text" placeholder="Enter Time Alert via SMS">
-        <button name="order_id">Send Alert</button>
+      <form id=${order.order_id} class="alert">
+        <input name="${order.phone_number}" type="text" placeholder="Enter Time Alert via SMS">
+        <button>Send Alert</button>
       </form>
-      <form class="completeOrder">
+      <form id="${order.order_id}" class="completeOrder">
         <button>Bump Order</button>
       </form>
       </div>
@@ -81,7 +81,14 @@ $(document).ready(function() {
         $('#checkoutTime').css('display', 'none');
         $('div#orders').css('display', 'block');
 
-        setInterval(() => {
+        $.ajax({
+          url: `/api/orders`,
+          method: "GET"
+        }).then((data2) =>{
+          console.log("data2", data2);
+            $('div#orders').html('')
+            renderOrders(data2.orders);
+        }).then(() => {setInterval(() => {
           $.ajax({
             url: `/api/orders`,
             method: "GET"
@@ -89,25 +96,66 @@ $(document).ready(function() {
             console.log("data2", data2);
               $('div#orders').html('')
               renderOrders(data2.orders);
-
         })
-  }, 5000)
+         }, 60000)})
     }
   }).catch((err) => console.log('err:', err.status))
 
 
-  // $(document).on('submit', '#alert', function() {
-  //   $.ajax({
-  //     url:'/sendSMS/',
-  //     method: 'GET',
-  //     data: {
-  //       number: result.number,
-  //       message: `Your Order ${result.id} is being prepared!`
-  //     }
-  //   })
-  // })
+  $(document).on('submit', '.alert', function(event) {
+    event.preventDefault();
+    console.log('event1:', event.target[0].name);
+    $.ajax({
+      url:'/sendSMS/',
+      method: 'POST',
+      data: {
+        number: `${event.target[0].name}`,
+        message: `You're order will take ${event.target[0].value} minutes`
+      }
+    })
+  })
+
+
+
+  $(document).on('submit', '.completeOrder', (event) => {
+    function removeFromCheckout(id) {
+    $(`section#${id}`).remove();
+  }
+    event.preventDefault();
+    console.log('event2:', event);
+    $.ajax({
+      url: '/api/orders',
+      method: 'DELETE',
+      data: {
+        ordersId: `${event.target.id}`
+      }
+    }).then((result) => {
+      console.log('test:', $(`section#${event.target.parentElement.parentElement.id}`));
+      removeFromCheckout(event.target.parentElement.parentElement.id);
+      $(`section#${event.target.parentElement.parentElement.id}`).html('');
+    })
+  })
 
 
 
 
 })
+// $(document).on('submit', 'form.delete-checkout-form', function(event) {
+//       event.preventDefault();
+//       console.log("event", event);
+//       let itemToDelete = (event.target.parentElement.parentElement.id).substring(8);
+//       console.log("itemtodelete:",itemToDelete);
+//       removeFromCheckout(itemToDelete);
+//       console.log(event);
+//       let price = Number((event.target.parentNode.firstElementChild.innerText).substring(1));
+//       let quantity = Number((event.target.parentNode.parentElement.firstElementChild.children[0].innerText));
+//       console.log(price);
+//       $.ajax({
+//         url: `api/order/delete/${itemToDelete}`,
+//         method: "DELETE",
+//       }).then((res) => {
+//         console.log("itemtodelete:", res);
+//         checkoutSum -= (price * quantity);
+//        $('#checkoutSum').html(`Subtotal: $${checkoutSum}.00`);
+//       })
+//     })

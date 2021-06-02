@@ -17,6 +17,7 @@ $(document).ready(function () {
 let checkoutSum = 0;
 let userLoggedIn = false;
 $('div.userError').hide();
+$('div#checkoutTime').hide();
 
 
 
@@ -291,12 +292,22 @@ function createMenuElement(menuData) {
         <form class="payForOrder">
         <button class="pay" id='payForFood' type="submit">Pay</button>
       </form>
+      <div class="success-checkmark">
+        <div class="check-icon">
+            <span class="icon-line line-tip"></span>
+            <span class="icon-line line-long"></span>
+          <div class="icon-circle"></div>
+          <div class="icon-fix"></div>
+          </div>
+        </div>
+      </div>
     </section>
     `)
   }
 
   const renderCheckoutElement = (element) => {
     $('div#checkoutTime').append(element);
+    $(".success-checkmark").hide();
   }
 
     $('#checkoutButton').on('click', (event) => {
@@ -312,13 +323,16 @@ function createMenuElement(menuData) {
         }
       }).then((result) => {
         $('div.userError').hide();
+
         $('.notOwner').css('display', 'none');
         $('.search').css('display', 'none');
         $('.isOwner').css('display', 'none');
         $('.checkoutTime').css('background', '#002E45');
         $('body').css('background', '#002E45');
         $('div.container-scroll').css('display', 'none');
-        $('div#checkoutTime').css('display', 'flex');
+        $('div#checkoutTime').slideDown("slow");
+        // $('div#checkoutTime').css('display', 'flex');
+
         $('.login').css('display', 'none');
         $('.logout').css('display', 'none');
 
@@ -338,7 +352,8 @@ function createMenuElement(menuData) {
         }).then((result2) => {
           console.log('result2:', result2)
           $('div.userError').hide();
-          renderCheckoutElement(checkoutElement(user, result2.order))
+          renderCheckoutElement(checkoutElement(user, result2.order));
+
         })
       }).catch((err) => {
         console.log(err);
@@ -362,25 +377,41 @@ function createMenuElement(menuData) {
           paid: true
         }
       }).then((result) => {
-        if(result.user_id % 2 === 0){
-          let userNumber;
+
+        let userNumber = '';
+        if(result.order[0].user_id % 2 === 0){
+          userNumber = '+17802247880';
         }
-        /*
+        else {
+          userNumber ='+16043587391';
+        }
+
         $.ajax({
           url:'/sendSMS/',
-          method: 'GET',
+          method: 'POST',
           data: {
-            number: result.number,
-            message: `Your Order ${result.id} is being prepared!`
+            number: userNumber,
+            message: `Your Order #${result.order[0].id} is being prepared by the kitchen!`
           }
-        })*/
+        }).then(() => {
+          $('#payForFood').hide();
+          $('.success-checkmark').show();
+          $(".check-icon").hide();
+          setTimeout(function () {
+            $(".check-icon").show();
+          }, 10);
 
-        console.log(result);
+        })
+
+
       })
     })
 
 
 
-
+    $("menu_item_img img").hover(
+      function(){$(this).animate({width: "200px", height:"200px"}, 1000);},
+      function(){$(this).animate({width: "145px", height:"145px"}, 1000);}
+  );
 
 })

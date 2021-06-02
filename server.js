@@ -87,16 +87,17 @@ app.get('/logout', (req, res) => {
 })
 
 
-app.get("/sendSMS/", (req, res) => {
+app.post("/sendSMS/", (req, res) => {
   //Twilio SMS config
+
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = require("twilio")(accountSid, authToken);
    client.messages
     .create({
-      body: `Hey you tight butthole again`,
+      body: req.body.message,
       from: "+15878023385",
-      to: `+17805170260`
+      to: req.body.number
     })
     .then((message) => console.log(message))
     .done();

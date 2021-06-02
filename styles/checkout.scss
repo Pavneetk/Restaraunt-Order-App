@@ -13,6 +13,9 @@
     min-height: 300px;
     font-family: $mainFont;
     $color: $skyBlue;
+    max-height: 600px;
+    overflow: scroll;
+
 
 #checkout {
   button {
@@ -71,6 +74,7 @@
     padding-bottom: 10px;
     border-bottom: $mainFontColor solid 0.5px;
     align-items: baseline;
+
     h6 {
       margin: 0 5px 0 5px;
       .nameOfFoodItem {
