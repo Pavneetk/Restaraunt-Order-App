@@ -4,7 +4,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    let query = `SELECT *, orders.id AS order_id, CURRENT_TIMESTAMP - date AS time_in_queue, status FROM orders JOIN users ON users.id = user_id WHERE orders.status = 'pending';`
+    let query = `SELECT *, orders.id AS order_id, CURRENT_TIMESTAMP - date AS time_in_queue, status FROM orders JOIN users ON users.id = user_id WHERE orders.status = 'paid';`
     console.log(query);
     db.query(query)
       .then(data => {
@@ -20,7 +20,7 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    let query = `UPDATE orders SET status = 'closed' WHERE user_id = $1;`;
+    let query = `UPDATE orders SET status = 'closed' WHERE user_id = $1 AND status = 'pending';`;
     let query2 = `INSERT INTO orders (user_id) VALUES ($1) RETURNING *;`;
 
     let options = [req.session.user_id];
@@ -67,14 +67,22 @@ module.exports = (db) => {
   });
 
   router.put("/", (req, res) => {
-    let query = `UPDATE orders SET status = 'pending' WHERE user_id = $1 AND status = 'open' RETURNING *;`;
+    let query = '';
+    console.log('body:', req.body);
+    if (req.body.paid === 'false') {
+      query = `UPDATE orders SET status = 'pending' WHERE user_id = $1 AND status = 'open' RETURNING *;`;
+    }
+    if (req.body.paid === 'true') {
+      query = `UPDATE orders SET status = 'paid' WHERE user_id = $1 AND status = 'pending' RETURNING *;`;
+    }
     if (req.session.user_id && req.session.user_id !== 1){
+
      db.query(query, [req.session.user_id])
        .then(data => {
              const order = data.rows;
              res.json({ order });
              })
-        .catch(err => {
+            .catch(err => {
                 res
                   .status(500)
                   .json({ error: err.message });

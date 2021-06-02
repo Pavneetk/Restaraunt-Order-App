@@ -1,6 +1,9 @@
   @import '_variables';
 
   .checkout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 20%;
     padding: 0 1rem 0 2rem;
     border: 0.5px $brownBeige;
@@ -9,18 +12,69 @@
     margin: 1rem;
     min-height: 300px;
     font-family: $mainFont;
-    button {
-      margin-bottom: 10px;
-    }
+    $color: $skyBlue;
+    max-height: 600px;
+    overflow: scroll;
+
+
+#checkout {
+  button {
+    display: inline-block;
+	padding: .75rem 1.25rem;
+	border-radius: 10rem;
+	color: #fff;
+	text-transform: uppercase;
+	font-size: 1rem;
+	letter-spacing: .15rem;
+	transition: all .3s;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+  border:none;
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $color;
+		border-radius: 10rem;
+		z-index: -2;
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		height: 100%;
+		background-color: darken($color, 15%);
+		transition: all .3s;
+		border-radius: 10rem;
+		z-index: -1;
+	}
+	&:hover {
+		color: #fff;
+		&:before {
+			width: 100%;
+		  }
+	  }
+  }
+}
+
   }
 
   .menuItemsOrder {
     margin-top: 10px;
+    width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     padding-bottom: 10px;
     border-bottom: $mainFontColor solid 0.5px;
     align-items: baseline;
+
     h6 {
       margin: 0 5px 0 5px;
       .nameOfFoodItem {
@@ -28,23 +82,34 @@
       }
     }
     button {
-      border-radius: 100%;
-      border: 2px solid $mainFontColor;
-      color: $mainFontColor;
+      background-color: $lightBackgroundColor;
+      border: none;
+      color: $electicYellow;
       width: 30px;
       height: 30px;
-      font-size: 12px;
+      font-size: 24px;
+    }
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
     }
   }
 
 div.userError {
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: auto;
-  width: 100%;
-  color:	#FF0000;
-  border: 3px solid #FF0000;
+  width: 50%;
+  color:	#555;
+  border: 3px solid #f5aca6;
+  border-radius:10px;
   padding: 5px;
   margin-top: 5px;
+  background:#ffecec no-repeat 10px 50%;
+  i {
+    color: red;
+  }
 }
+

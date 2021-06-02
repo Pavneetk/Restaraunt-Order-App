@@ -88,27 +88,27 @@ INSERT INTO menu_items (name, price, thumbnail_picture_url, description, categor
 
 --Beer
 
-('Catch Lager', 6, '../images/catchLager.jpeg', '', 'Beers'),
+('Catch Lager', 6, '../images/catchLager.jpeg', 'A pale malty lager brewed in Vancouver BC', 'Beers'),
 
-('Red Truck Ale', 7, '../images/redTruckAle.jpeg', '', 'Beers'),
+('Red Truck Ale', 7, '../images/redTruckAle.jpeg', 'Combination of roasted malts and North American Hops', 'Beers'),
 
-('Warlock Destiny IPA', 6, '../images/warlockDestinyIpa.jpeg', '', 'Beers'),
+('Warlock Destiny IPA', 6, '../images/warlockDestinyIpa.jpeg', 'A light easy going malt profile with tropical aromas of clementine, peach and passionfruit', 'Beers'),
 
-('Trash Panda IPA', 8, '../images/trashPandaIpa.jpeg', '', 'Beers'),
+('Trash Panda IPA', 8, '../images/trashPandaIpa.jpeg', 'The urban trash panda will spend most of its life scouring garbage bins for the dankest, juiciest hops that the Northwest coast can offer.', 'Beers'),
 
-('Electric Unicorn IPA', 8, '../images/electricUnicorn.jpeg', '', 'Beers'),
+('Electric Unicorn IPA', 8, '../images/electricUnicorn.jpeg', 'Sweet banana and fruit flavours are balanced against citrus hop background that finishes dry', 'Beers'),
 
-('Coors', 5, '../images/coors.jpeg', '', 'Beers'),
+('Coors', 5, '../images/coors.jpeg', 'The worlds most refreshing beer', 'Beers'),
 
-('Coors Banquet', 5, '../images/coorsBanquet.png', '', 'Beers'),
+('Coors Banquet', 5, '../images/coorsBanquet.png', 'A subtle blend of Chinook, Hallertau, Herkules and Taurus hops gives Coors Banquet just the perfect hint of bitterness to offset the malty sweetness.', 'Beers'),
 
-('Kronenbourg', 6, '../images/kronenbourg.jpeg', '', 'Beers'),
+('Kronenbourg', 6, '../images/kronenbourg.jpeg', 'A classic french wheat beer with a refreshing citrus twist.', 'Beers'),
 
-('Corona', 5, '../images/corona.jpeg', '', 'Beers'),
+('Corona', 5, '../images/corona.jpeg', 'An easy-to-enjoy beer that enhances lifes meaningful moments.', 'Beers'),
 
-('Stella Artois', 7, '../images/stellaArtois.jpeg', '', 'Beers'),
+('Stella Artois', 7, '../images/stellaArtois.jpeg', 'A malty middle and crisp finish should reveal the full, pleasantly bitter flavour that Stella Artois is known for and what makes it an ideal accompaniment to any meal.', 'Beers'),
 
-('Fat Tug IPA', 8, '../images/fatTugIpa.jpeg', '', 'Beers'),
+('Fat Tug IPA', 8, '../images/fatTugIpa.jpeg', 'Northwest-style India Pale Ale with an intense hop profile featuring notes of grapefruit, mango, melon, and passionfruit.', 'Beers'),
 
 
 --Cocktails
