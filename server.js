@@ -23,7 +23,7 @@ const dbConnectionURL = `postgres://${process.env.DB_USER}:${process.env.DB_PASS
 
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
-const db = new Pool({dbParams});
+const db = new Pool(dbParams);
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
