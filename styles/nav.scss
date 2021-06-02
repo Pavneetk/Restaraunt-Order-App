@@ -4,12 +4,14 @@ nav {
   background-image: -webkit-gradient(linear, left top, left bottom, from($lightBlue), to(#0061927f));
   display: flex;
   align-items: center;
-  height: 200px;
   width: 100%;
   color: #FFFFFF;
   justify-content: space-between;
   position: fixed;
   z-index: 2;
+  img {
+    width: 90%;
+  }
 }
 
 .search input[type=text] {
@@ -23,7 +25,6 @@ nav {
   font-size: 17px;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.1);
-  width:400px;
   color: $lightBackgroundColor;
 }
 ::-webkit-input-placeholder{
@@ -43,6 +44,7 @@ nav {
 div.search {
   display:flex;
   align-self:center;
+  justify-content: center;
 }
 
 form.login button {
@@ -78,4 +80,44 @@ input#userIdInput{
   border:0;
   color: $lightBackgroundColor;
   text-align: center;
+}
+
+
+
+// first break point
+@media (max-width: 1500px) {
+  nav {
+    img {
+      width: 70%;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  nav {
+    img {
+      width: 60%;
+    }
+    .search input[type=text] {
+
+      font-size: 12px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  nav {
+    img {
+      width: 60%;
+    }
+    .search input[type=text] {
+      font-size: 10px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .search input[type=text], .search i[type=submit] {
+    display: none;
+  }
 }

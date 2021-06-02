@@ -2,7 +2,7 @@
 
 section.menu_item {
   margin: 1rem;
-  padding: 2px;
+  padding: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,20 +12,26 @@ section.menu_item {
   border-radius: 10px;
   background-color: $lightBackgroundColor;
   padding: 0;
-  max-height: 175px;
-  max-width: 1200px;
+  max-height: 185px;
+  // max-width: 1200px;
 
   // .menu-item-img
   .menu_item_img img{
     margin: 1px;
     padding: 5px;
-    width: 145px;
-    height: 145px;
+    width: 9vw;
+    height: 9vw;
     object-fit: cover;
     object-position: center;
     position: relative;
-}
 
+}
+  .menu_item_img img:hover{
+    transform: scale(1.7);
+    transition: transform 0.4s;
+    border-radius: 10px;
+    z-index: 2;
+  }
 
   // .menu-item-name {
   //   // display: flex;
@@ -44,6 +50,7 @@ section.menu_item {
     margin-bottom: 2%;
     padding: 2% 5% 2% 5%;
     text-align: center;
+    font-size: 0.9vw;
   }
 
   .menu-item-price {
@@ -66,9 +73,11 @@ section.menu_item {
 
 section.menu_item:hover {
   background-color: $lightSkyBlue;
-  overflow: hidden;
+  overflow: visible;
   .nameDescription {
-    font-size: larger;
+    transform: scale(1.2);
+    transition: transform 0.3s;
+    width: 60%;
   }
 
 }
@@ -157,4 +166,34 @@ div.menu section.menu_item.Cocktails {
 select {
   border: none;
   background-color: $lightBackgroundColor;
+}
+
+
+@media (max-width: 1600px) {
+  section.menu_item {
+    img {
+      width: 1.2vw;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  section.menu_item {
+    .menu_item_img {
+      width: 16vw;
+    }
+  }
+}
+
+@media (max-width: 1050px) {
+  section.menu_item p {
+    font-size: 1.2vw;
+  }
+  select {
+    width: 80%;
+    align-self: flex-end;
+  }
+  div.btn.btn-one {
+    font-size: 1.3vw;
+  }
 }

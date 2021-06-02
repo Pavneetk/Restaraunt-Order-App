@@ -1,9 +1,11 @@
 // See: https://sass-lang.com/
 //Variable colors to be used globally
 @import '_variables';
-
+* {
+  // box-sizing: border-box;
+}
 html {
-
+  width: 100%;
   scroll-behavior: smooth;
 }
 
@@ -14,7 +16,7 @@ body {
   align-items: center;
   background-color: $backgroundColor;
   color: $mainFontColor;
-
+  width: 100%;
   h1 {
     color: white;
   }
@@ -25,7 +27,7 @@ main {
   display:flex;
   flex-direction: row;
   align-items: flex-start;
-  width:95vw;
+  width: 100%;
   justify-content: space-between;
   margin-top: 2rem;
   background-color: $backgroundColor;

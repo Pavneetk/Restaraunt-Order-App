@@ -22,12 +22,18 @@
       }
 
     }
-        h3 {
+        h2 {
       padding-left: 15px;
+      font-size: 1.5vw;
+      i {
+        font-size: 1.2vw;
+      }
       :hover {
         padding-left: 20px;
       }
     }
+
+
  }
 
  @keyframes swinging{
@@ -37,5 +43,8 @@
   100%{transform: rotate(0deg);}
 }
 
-
-
+@media (max-width: 1750px) {
+  .accordian {
+    display: none;
+  }
+}

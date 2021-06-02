@@ -1,4 +1,6 @@
 $(document).ready(() => {
+  console.log('window width: ', $(window).width())
+  if ($(window).width() > 1750) {
   var $sidebar   = $("div.accordian, .checkout"),
         $window    = $(window),
         offset     = $sidebar.offset(),
@@ -19,5 +21,6 @@ $(document).ready(() => {
                   marginTop: "1 rem"
               });
           }
-      });
+        });
+      }
 })

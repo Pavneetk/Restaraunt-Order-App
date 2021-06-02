@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     width: 20%;
-    padding: 0 1rem 0 2rem;
+    padding: 0 1rem 0 1rem;
     border: 0.5px $brownBeige;
     background-color: $lightBackgroundColor;
     border-radius: 10px;
@@ -14,13 +14,14 @@
     font-family: $mainFont;
     $color: $skyBlue;
     max-height: 600px;
-    overflow: scroll;
+    overflow: auto;
+
 
 
 #checkout {
   button {
     display: inline-block;
-	padding: .75rem 1.25rem;
+	padding: .75rem .75rem;
 	border-radius: 10rem;
 	color: #fff;
 	text-transform: uppercase;
@@ -99,9 +100,9 @@
 div.userError {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: auto;
-  width: 50%;
+  // width: 70%;
   color:	#555;
   border: 3px solid #f5aca6;
   border-radius:10px;
@@ -113,3 +114,31 @@ div.userError {
   }
 }
 
+@media (max-width: 1750px) {
+  main.notOwner {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 250px;
+    .checkout {
+      color: $lightBackgroundColor;
+      width: 100%;
+      position:fixed;
+      padding: none;
+      margin-bottom: 0;
+      bottom: 0;
+      border-radius: 0px;
+      background-color: $lightBrownBeige;
+      max-height:300px;
+      z-index: 10;
+      .menuItemsOrder button{
+        border: none;
+        color: $darkBlue;
+        width: 30px;
+        height: 30px;
+        font-size: 24px;
+      }
+    }
+  }
+
+}

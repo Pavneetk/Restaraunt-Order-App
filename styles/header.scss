@@ -8,11 +8,13 @@ header {
 
   .container-scroll {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
 
+    z-index: 1;
+    top: 100%;
+    opacity: 0.7;
    }
 
    h3 {
@@ -21,7 +23,7 @@ header {
     background-color: transparent;
     outline: none;
     // font-style: italic;
-    font-size: 15px;
+    font-size: 1.0vw;
     font-weight: bold;
     border-radius: 50px;
     color: $darkBlue;
@@ -32,7 +34,7 @@ header {
     background: $lightBackgroundColor;
     padding: 15px;
     i {
-      font-size: 40px;
+      font-size: 1.5vw;
     }
    }
 
@@ -46,6 +48,7 @@ header {
      opacity: 0;
      transform: scale(0.3);
      animation: move-chevron 3s ease-out infinite;
+     width: 5vw;
 
    }
 
@@ -98,19 +101,112 @@ header {
 
 
   .jumbotron {
-    background-image: url("../images/oceanic.webp");
-
-    width: 100vw;
+    // background-image: url("../images/oceanic.webp");
+    width: 100%;
     height: 50vw;
     background-size: 100%;
     object-fit: fill;
-    animation-name: backgroundColorPalette;
-    animation-duration: 40s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: linear;
+    background-size: cover;
+
+
     /* linear is enabled default, it’s not necessary to add it make it work but it can make your code more expressive */
   }
+}
+
+.toggle-image {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 800px;
+  transition: opacity 1s ease-in-out;
+}
+
+    // object-fit: cover;
+    // object-position: center;
+
+
+/* Styles for the specific images. */
+.first-image {
+ background-image: url('../images/bowl_of_fancy_sauce.webp');
+ background-repeat: no-repeat;
+ background-size: cover;
+ z-index: -4;
+ opacity: 0;
+ width: 100%;
+    height: 50vw;
+    background-size: 100%;
+    object-fit: fill;
+}
+
+.second-image {
+ background-image: url('../images/bowl_of_shrimp.webp');
+ background-repeat: no-repeat;
+ background-size: cover;
+ z-index: -3;
+ opacity: 0;
+ width: 100%;
+    height: 50vw;
+    background-size: 100%;
+    object-fit: fill;
+}
+
+.third-image {
+ background-image: url('../images/platter.webp');
+ background-repeat: no-repeat;
+ background-size: cover;
+ z-index: -2;
+ opacity: 0;
+ width: 100%;
+    height: 50vw;
+    background-size: 100%;
+    object-fit: fill;
+}
+
+.fourth-image {
+  background-image: url('../images/salmon_steak.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+  opacity: 0;
+  width: 100%;
+     height: 50vw;
+     background-size: 100%;
+     object-fit: fill;
+ }
+
+
+.first-image.show {
+ opacity: 1;
+}
+
+.second-image.show {
+ opacity: 1;
+}
+
+.third-image.show {
+ opacity: 1;
+}
+
+.fourth-image.show {
+  opacity: 1;
+ }
+
+
+
+//first breakpoint
+
+@media (max-width: 1900px) {
+  header {
+    .container-scroll {
+      margin-top: 3%;
+    }
+  }
+}
+
+
+
+
 
   // ['../images/bowl.webp', '../images/green_far_away.webp','../images/bowl_of_shrimp.webp','../images/platter.webp','../images/salmon_steak.webp', '../images/oceanic.webp']
 
@@ -132,4 +228,3 @@ header {
   //   }
   // }
 
-}

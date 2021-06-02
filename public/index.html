@@ -17,6 +17,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/owner.js"></script>
+    <script type="text/javascript" src="/scripts/headerImage.js"></script>
 
     <!-- sidebar floating functionality -->
     <script type="text/javascript" src="/scripts/sidebar.js"></script>
@@ -30,6 +31,7 @@
 
     <!-- Fontawesome ICONS-->
     <script src="https://kit.fontawesome.com/39d9cd885c.js" crossorigin="anonymous"></script>
+
   </head>
   <body>
   <nav class="nav-bar">
@@ -48,7 +50,13 @@
 
     <header>
     <div class="jumbotron">
+     <div class="background-image toggle-image first-image show"></div>
+          <div class="background-image toggle-image second-image"></div>
+          <div class="background-image toggle-image third-image"></div>
+          <div class="background-image toggle-image fourth-image"></div>
 
+
+      <!--['../images/bowl.webp', '../images/green_far_away.webp','../images/bowl_of_shrimp.webp','../images/platter.webp','../images/salmon_steak.webp', '../images/oceanic.webp'] -->
 
     <div class="container-scroll" type="submit">
       <h3 id="scrollDown" >&nbsp&nbspEat &nbsp<i class="fas fa-fish"></i>&nbsp Food!</h3>
@@ -87,8 +95,9 @@
       </form>
       <div class="userError">
         <i class="fas fa-exclamation-triangle"></i>
-        <span>Please Log in First</span>
-        <i class="fas fa-exclamation-triangle"></i></div>
+        <span>&nbspYou must be logged in.</span>
+      </div>
+
     </div>
   </main>
 
@@ -96,6 +105,7 @@
 
 <!-- this main replaces the menu and is only rendered at checkout -->
   <main class="checkoutTime">
+
     <div id="checkoutTime">
     </div>
   </main>

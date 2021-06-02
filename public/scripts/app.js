@@ -37,7 +37,7 @@ function createMenuElement(menuData) {
         </p>
       </div>
       <div class="menu-item-add">
-      <form id="${menuData.id}" class="menu-item-form">
+      <form id="menuData${menuData.id}" class="menu-item-form">
       <h3 class="menu-item-price">$${menuData.price}</h3>
         <select name="${menuData.id}" placeholder="quantity" type="number" min="1" max="10">
           <option value="1">1</option>
@@ -291,14 +291,13 @@ function createMenuElement(menuData) {
       </div>
         <form class="payForOrder">
         <button class="pay" id='payForFood' type="submit">Pay</button>
-      </form>
+        </form>
       <div class="success-checkmark">
         <div class="check-icon">
             <span class="icon-line line-tip"></span>
             <span class="icon-line line-long"></span>
-          <div class="icon-circle"></div>
-          <div class="icon-fix"></div>
-          </div>
+            <div class="icon-circle"></div>
+            <div class="icon-fix"></div>
         </div>
       </div>
     </section>
@@ -377,22 +376,31 @@ function createMenuElement(menuData) {
           paid: true
         }
       }).then((result) => {
-
+        console.log(result);
         let userNumber = '';
-        if(result.order[0].user_id % 2 === 0){
-          userNumber = '+17802247880';
-        }
-        else {
-          userNumber ='+16043587391';
-        }
+        let orderId = result.order[0].id;
 
         $.ajax({
+          url: '/api/users',
+          method: 'GET',
+        }).then((result) => {
+          userNumber = result.users[0].phone_number;
+          $.ajax({
           url:'/sendSMS/',
           method: 'POST',
           data: {
             number: userNumber,
-            message: `Your Order #${result.order[0].id} is being prepared by the kitchen!`
+            message: `Your Order #${orderId} is being confirmed by the kitchen!`
           }
+        }).then((result) => {
+          $.ajax({
+            url:'/sendSMS/',
+            method: 'POST',
+            data: {
+              number: '+17805170260',
+              message: `An order has been placed, ORDER: ${orderId}`
+            }
+          })
         }).then(() => {
           $('#payForFood').hide();
           $('.success-checkmark').show();
@@ -400,8 +408,9 @@ function createMenuElement(menuData) {
           setTimeout(function () {
             $(".check-icon").show();
           }, 10);
-
         })
+      }).catch(err => console.log(err))
+
 
 
       })
@@ -409,9 +418,6 @@ function createMenuElement(menuData) {
 
 
 
-    $("menu_item_img img").hover(
-      function(){$(this).animate({width: "200px", height:"200px"}, 1000);},
-      function(){$(this).animate({width: "145px", height:"145px"}, 1000);}
-  );
+
 
 })

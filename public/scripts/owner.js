@@ -105,14 +105,16 @@ $(document).ready(function() {
   $(document).on('submit', '.alert', function(event) {
     event.preventDefault();
     console.log('event1:', event.target[0].name);
+
     $.ajax({
       url:'/sendSMS/',
       method: 'POST',
       data: {
         number: `${event.target[0].name}`,
-        message: `You're order will take ${event.target[0].value} minutes`
+        message: `You're order will take ${event.target[0].value} minutes to complete.`
       }
     })
+
   })
 
 

@@ -38,11 +38,13 @@ $("#cocktails").click(function () {
 
 $(".fa-search").click(function (data) {
   let searchParam = $('input.search').val();
+  console.log(searchParam);
   $.ajax({
     url: `/api/menu/name/${searchParam}`,
     method: 'GET'
   }).then((result)=> {
-    $(`#${result.menu_item[0].id}`)[0].scrollIntoView({block: 'center'});
+    console.log(result);
+    $(`#menu${result.menu_item[0].id}`)[0].scrollIntoView({block: 'center'});
   })
 
   })
