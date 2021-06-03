@@ -1,19 +1,6 @@
-// const { user_id } = require('../../server.js');
-// const cookieParser = require('cookie-parser');
+
 
 $(document).ready(function () {
-  // console.log(user_id);
-// console.log(req.session.user_id);
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     for(user of users) {
-//       $("<div>").text(user.name).appendTo($("body"));
-//     }
-//   });
-// });
 let checkoutSum = 0;
 let userLoggedIn = false;
 $('div.userError').hide();
@@ -24,7 +11,7 @@ $('div#checkoutTime').hide();
 
 //returns full HTML structure a single menu item box
 function createMenuElement(menuData) {
-  // console.log(menuData.thumbnail_picture_url)
+
   return $(`
     <section id="menu${menuData.id}" class="menu_item ${menuData.category}">
       <div class="menu_item_img">
@@ -76,6 +63,7 @@ function createMenuElement(menuData) {
 
       $('div.menu').append($item);
     }
+
 
   }
 

@@ -5,7 +5,7 @@
 4. The ability to send finalized order to restaurant.
 5. Order recieved by resaurant by text and in app
 6. Respond by text and in app notification with ETA. (stretch)
-7.
+7. Heroku (stretch)
 
 
 #002E45
@@ -171,3 +171,41 @@ List of food items
 
 
 
+- requirement
+  * User story
+
+- single restaurant
+  * As a customer I can make place orders, because I am hungry
+
+- can add or delete one or more dishes
+  * As a customer I can add multiple items to my cart, because I want to order more than one dish
+  * As a customer I can remove items from my cart, because I might change my mind
+
+- place an order for pick up
+  * As a customer I can make an order on the app for pickup because I don't want to call
+
+- notification when order is ready
+  * As a customer I should get visual feedback on the app when order is ready, because I want to see when it is complete
+
+-notification for restaruant when new order is place
+  * As a restaraunt I should get visual feedback on the app, because I want to see when I new order is in
+
+- recieve order via SMS
+  * As a restaraunt I should recieve orders via SMS, because I cant be notified away from the app
+  * As a customer I should recieve a order complete message via SMS, because I don't want to watch the app till its ready
+
+- specify the amount of time it will take to fulfill
+  * As a restaurant I want to be able to show the customer how long the order will take to fulfill, because I don't want them to have to wait until they get notified to come to the restaurant
+
+- two kinds of users, one for customer and restaruant
+  * As a customer I should only see my orders, should only be able to place one order and wait till it is done,
+
+### Resources
+- customers
+- cart items
+- order
+-
+
+(stretch - multi-restaurant app)
+
+- reformat in first person
