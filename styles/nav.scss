@@ -59,25 +59,28 @@ form.login {
 }
 
 form.login button {
-  width: 150px;
+  // width: 150px;
   margin-left: 100px;
-  margin-right:10px;
+  margin-right:100px;
   background-color: transparent;
   color: $electicYellow;
-  height: 2vw;
-  font-size: 1.75vw;
+  // height: 2vw;
+  font-size: 2vw;
   border-radius: 5px;
   border: none;
   font-family: $mainFont;
+  i {
+    margin-left: 25px;
+  }
 }
 
 form.logout button {
  width: auto;
-  margin-left:100px;
-  margin-right:10px;
+  margin-left:25px;
+  margin-right:100px;
   background-color: transparent;
   color: $electicYellow;
-  font-size: 1.5vw;
+  font-size: 2vw;
   border-radius: 5px;
   border: none;
   // white-space: nowrap;
