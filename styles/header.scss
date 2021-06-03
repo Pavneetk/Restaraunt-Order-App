@@ -29,10 +29,12 @@ header {
     color: $darkBlue;
     display: flex;
     align-self: flex-end;
+    white-space: nowrap;
     margin-bottom: 225px;
     align-items: center;
     background: $lightBackgroundColor;
     padding: 15px;
+    width: auto;
     i {
       font-size: 1.5vw;
     }
@@ -200,31 +202,10 @@ header {
   header {
     .container-scroll {
       margin-top: 3%;
+      display: none;
     }
   }
 }
 
 
-
-
-
-  // ['../images/bowl.webp', '../images/green_far_away.webp','../images/bowl_of_shrimp.webp','../images/platter.webp','../images/salmon_steak.webp', '../images/oceanic.webp']
-
-  // @keyframes backgroundColorPalette {
-  //   0% {
-  //     background-image: url('../images/bowl.webp');
-  //   }
-  //   25% {
-  //     background-image: url('../images/green_far_away.webp');
-  //   }
-  //   50% {
-  //     background-image: url('../images/bowl_of_shrimp.webp');
-  //   }
-  //   75% {
-  //     background-image: url('../images/platter.webp');
-  //   }
-  //   100% {
-  //     background-image: url('../images/salmon_steak.webp');
-  //   }
-  // }
 

@@ -10,8 +10,8 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-
-    db.query(`SELECT users.is_owner FROM users WHERE users.id = $1;`, [req.session.user_id])
+    if(req.session.user_id){
+      db.query(`SELECT users.is_owner FROM users WHERE users.id = $1;`, [req.session.user_id])
       .then(data => {
         const user = data.rows[0];
         console.log(user)
@@ -23,6 +23,8 @@ module.exports = (db) => {
         .status(500)
           .json({ error: err.message });
       });
+    } else res.send("Not logged in.");
+
   });
 
   return router;

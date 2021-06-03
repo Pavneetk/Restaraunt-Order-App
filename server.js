@@ -1,6 +1,8 @@
 // load .env data into process.env
 require('dotenv').config();
 
+//test comment for heroku
+
 // Web server config
 const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
@@ -15,6 +17,9 @@ const cookieParser = require('cookie-parser');
 
 
 // PG database client/connection setup
+
+
+const dbConnectionURL = `postgres://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
