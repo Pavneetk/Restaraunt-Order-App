@@ -8,7 +8,7 @@ section.menu_item {
   align-items: center;
   font-family: $mainFont;
   color: $darkBlue;
-  border: 3px solid $backgroundColor;
+  border: none;
   border-radius: 10px;
   background-color: $lightBackgroundColor;
   padding: 0;
@@ -24,11 +24,12 @@ section.menu_item {
     object-fit: cover;
     object-position: center;
     position: relative;
+    transition: all 0.6s;
 
 }
   .menu_item_img img:hover{
     transform: scale(1.7);
-    transition: transform 0.4s;
+
     border-radius: 10px;
     z-index: 2;
   }
@@ -51,6 +52,7 @@ section.menu_item {
     padding: 2% 5% 2% 5%;
     text-align: center;
     font-size: 0.9vw;
+    transition: all 0.3s;
   }
 
   .menu-item-price {
@@ -71,12 +73,14 @@ section.menu_item {
 
 }
 
+
 section.menu_item:hover {
   background-color: $lightSkyBlue;
   overflow: visible;
+  box-shadow: 3px 2px#848075;
   .nameDescription {
     transform: scale(1.2);
-    transition: transform 0.3s;
+
     width: 60%;
   }
 
