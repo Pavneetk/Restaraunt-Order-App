@@ -3,9 +3,9 @@ INSERT INTO menu_items (name, price, thumbnail_picture_url, description, categor
 
 --Appetizers
 
-('Spinach Artichoke', 14, '../images/spinachArtichoke.jpeg', 'creamy spinach, artichoke hearts combined with a mixture of cheeses topped with pico de gallo accompanied with tortilla chips for dipping', 'Appetizers'),
+('Spinach Artichoke', 14, '../images/spinachArtichoke.jpeg', 'Creamy spinach, artichoke hearts combined with a mixture of cheeses topped with pico de gallo accompanied with tortilla chips for dipping', 'Appetizers'),
 
-('Mediterranean Flatbread', 15, '../images/mediterraneanFlatbread.jpeg', 'vine ripened tomatoes, caramelized onions, olives & artichokes, with hummus and topped with crumbled feta, drizzled with a sweet balsamic glaze', 'Appetizers'),
+('Mediterranean Flatbread', 15, '../images/mediterraneanFlatbread.jpeg', 'Vine ripened tomatoes, caramelized onions, olives & artichokes, with hummus and topped with crumbled feta, drizzled with a sweet balsamic glaze', 'Appetizers'),
 
 ('Fresh Mussels', 20, '../images/freshMussels.jpeg', 'Steamed with white wine, fresh herbs & grape tomatoes, accompanied by oven toasted bread', 'Appetizers'),
 

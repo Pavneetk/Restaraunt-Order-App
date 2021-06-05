@@ -82,12 +82,11 @@ function createMenuElement(menuData) {
 
   //initiates menu_items data loading on page load
   loadData();
-  // console.log(isStarted);
+
 
   const startOrder = () => {
-    // let isStarted = false;
-    // if (isStarted === false) {
-      console.log('startOrderAtLeastStarted:')
+
+
       $.ajax({
         url: "/api/orders",
         method: "POST",
@@ -99,11 +98,10 @@ function createMenuElement(menuData) {
         console.log('startOrderERR:', err);
       })
 
-    // }
-    // isStarted = true;
+
   }
 
-  // Object.keys(req.body)[0], req.body[Object.keys(req.body)[0]]
+
 
     const addToOrderElement = (quantity, itemDetails) => {
     return $(`
@@ -126,7 +124,7 @@ function createMenuElement(menuData) {
     console.log('addtoOrder is called!')
     $('#checkoutAppendage').append(element);
   };
-    // let forms = document.getElementsBy('.menu-item-form');
+
 
 
 
@@ -185,23 +183,7 @@ function createMenuElement(menuData) {
     })
 
 
-//   $(document).on('submit','form.menu-item-form', function(event) {
-//     console.log('STARTED AJAX',event);
-//   event.preventDefault();
-//   let data = $(this).Val();
-//   $.ajax({
-//     url: "/api/order",
-//     method: "POST",
-//   }).then((result) => {
-//     console.log("YEAY:", result);
-//   }).catch((err) => {
-//     err
-//   })
-// })
 
-  // const addToOrder = () => {
-
-    // }
 
     //ajax request onClick for login button at top of page
 
@@ -318,7 +300,7 @@ function createMenuElement(menuData) {
         $('body').css('background', '#002E45');
         $('div.container-scroll').css('display', 'none');
         $('div#checkoutTime').slideDown("slow");
-        // $('div#checkoutTime').css('display', 'flex');
+
 
         $('.login').css('display', 'none');
         $('.logout').css('display', 'none');

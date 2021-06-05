@@ -1,14 +1,15 @@
 
-1. Each intruduce,
+1. Each introduce,
 
--Mitch
-- Why we chose the food application project
--- We chose this app in particular because we thought it looked challenging, it would have an interesting UI, and because we thought it would be cool
-to implement the TWILIO text API
+***MITCH***
+- We chose the food ordering application project
+-- We chose this one in particular because we thought it looked challenging, it would have an interesting
+UI with the interaction between the owner side and the customer, and because we thought it would be cool to
+implement the TWILIO text message API
 
-18s
 
 
+***PAVNEET***
 2. Jump right into presenting
 * Welcome to Nallys Catch, this is our SPA
 * Eat food button
@@ -20,24 +21,30 @@ to implement the TWILIO text API
 * add a few then remove one
 * checkout and hit pay and wait for text
 * hit logo
-1:05min
+
+
 * this is the owner side that can only be accessed by the owner
 * as you can see the order that pavneet placed has been recieved Here, you can see all of the details of the order
 * The owner can then send alerts in minutes to the customers phone number stored in the database, as Pavneet will show you he recieved a text
 * Then finally the order can be bumped whenever the kitchen decides too
 * Mitch is going to send us an order, and there it is ---
 
+***LOGAN***
 
-- How the restaurant owner recieves an order and interacts with the customer. (Larry)
---Here we have a much simpler ui that is rendered (without a page reload) only if the owner is logged in
---Recieve order from customer as soon as order is paid for.
---The owner can send custom alerts about how long their order is going to take to make.
+- As you can see here on the restaurant side we have recieved the order pavneet made, here are all the details
+
+- I can now send a text message to him explaining how long the order will take
+
 --The owner can then bump the order off of the screen whenever they choose.
 
-2:10min
-(Mitch)
 
-- Stayed on voice chat all day, used liveshare the whole time to keep all our code synced
+
+***MITCH***
+-so Im going to talk a bit about how our process of creating the app from this past week.
+- We actually decided when we started that we would stay on voice chat all day and we did this for
+pretty much the whole week on discord. We all worked on the same files using VS CODE liveshare the
+whole time to keep all our code synced up
+
 
 - Pros
 -- By pair programming, we all got to work on and learn about all aspects of app
@@ -46,35 +53,38 @@ to implement the TWILIO text API
 
 - Cons
 -- With everyone coding in the same file at once, it sometimes be hard to find out who broke the app.
--- Working in one file was difficult at the beginning because only the host could refresh the page, but we figured out that you can share the local server in VS Code
+-- Working in one directory was difficult at the beginning because only the host could refresh the page,
+but once we figured out that you can share the local server in VS Code it worked a lot better
 
 
-3:05
-(Pavneet)
--- Some Major difficulties while coding
--- Having to figure out how to target elements with jQuery that were rendered after page load.
--- Login/logout was actually was a problem causing bugs due to different privilidges for customers vs owner.
+
+
+
+***PAVNEET***
+-- Some Major difficulties we had while coding this project were
+-- Targetting elements with Jquery that were created by Jquerry after page load created problems for us and were able to fix them with document on submit
+-- a simple Login/logout was actually created more problems causing bugs due to different privilidges for customers vs owner.
    -We think if we spent the time to actually build out a login page we may have negated the time to fix our other bugs.
-3:45
+
 
 4. Wrap up, stretch, this has been a great experience, things we would like to add the the application.
 
-(logan)
+
+***LOGAN***
 - stretch
 -- complete single page application
 -- added our site to heroku @ www.nallys-catch-of-the-day.herokuapp.com
 -- we made our site pretty responsive, once we had our project on a heroku server we were able to see how it looked on our phones and changed it accordingly
 
 
-LOGAN
+***LOGAN***
 -things we would like to add to this application
   -- add updates to menu (PUT) by owner
   -- add delivery and mapping functionality.
 
 
-LOGAN
-
+***LOGAN***
 --This has been all of our favourite part of the bootcamp and we couldn't have asked for better group members.
 
 
-4:10min
+

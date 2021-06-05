@@ -97,7 +97,7 @@ $(document).ready(function() {
               $('div#orders').html('')
               renderOrders(data2.orders);
         })
-         }, 60000)})
+         }, 10000)})
     }
   }).catch((err) => console.log('err:', err.status))
 
