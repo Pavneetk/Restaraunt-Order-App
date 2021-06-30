@@ -1,6 +1,7 @@
 LHL Node Skeleton
 =========
 ## Take a look at: https://nallys-catch-of-the-day.herokuapp.com/
+You won't be able to order unless you are logged in. Try logging in with user 5.
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
