@@ -1,6 +1,6 @@
 LHL Node Skeleton
 =========
-
+## Take a look at: https://nallys-catch-of-the-day.herokuapp.com/
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
@@ -42,5 +42,4 @@ The following steps are only for _one_ of the group members to perform.
 - NPM 5.x or above
 - PG 6.x
 
-##Hosted at Heroku:
-https://nallys-catch-of-the-day.herokuapp.com/
+
